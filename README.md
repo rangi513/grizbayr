@@ -5,6 +5,7 @@
 ### Description:
 
 Uses simple Bayesian conjugate prior update rules to calculate the following metrics for various marketing objectives:
+
       1. Win Probability of each option
       2. Value Remaining in the Test
       3. Percent Lift Over the Baseline
