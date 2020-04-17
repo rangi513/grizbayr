@@ -6,13 +6,13 @@
 
 Uses simple Bayesian conjugate prior update rules to calculate the following metrics for various marketing objectives:
 
-      1. Win Probability of each option
-      2. Value Remaining in the Test
-      3. Percent Lift Over the Baseline
-      
+  1. Win Probability of each option
+  2. Value Remaining in the Test
+  3. Percent Lift Over the Baseline
+
 This allows a user to implement Bayesian Inference methods when analyzing the results of a split test or Bandit experiment.
-      
-Marketing objectives supported:
+
+### Marketing objectives supported:
 
  - Conversion Rate
  - Revenue Per Session 
