@@ -14,6 +14,44 @@ knitr::opts_chunk$set(
 )
 ```
 
-Bayesian Inference is a method of statistical inference that can be used in the analysis of observed data from marketing tests. Bayesian updates start with a prior distribution (prior probable information about the world) and a likelihood function (a distribution from which the samples are drawn). Then, given some observed data, the prior can be multiplied by the likelihood of the data to produce a posterior distribution of probabilities. At the core of all of this is Bayes' Rule. 
+## About the Package
+
+Bayesian Inference is a method of statistical inference that can be used in the analysis of observed data from marketing tests. Bayesian updates start with a prior distribution (prior probable information about the environment) and a likelihood function (an expected distribution from which the samples are drawn). Then, given some observed data, the prior can be multiplied by the likelihood of the data to produce a posterior distribution of probabilities. At the core of all of this is Bayes' Rule. 
 
 $$ P(A\ |\ Data) \sim P(Data\ |\ A) \cdot P(A)$$
+This package is intended to abstract the math of the conjugate prior update rules to provide 3 pieces of information for a user:
+
+1. Win Probability
+1. Value Remaining
+1. Lift vs. Control
+
+## Usage
+
+Select which piece of information you would like to calculate.
+
+| Metric                       | Function Call            |
+|------------------------------|--------------------------|
+| Win Probability              | `win_prob()`             |
+| Value Remaining              | `value_remaining()`      |
+| Lift vs. Control             | `lift_vs_control()`      |
+| Win Probability vs. Baseline | `win_prob_vs_baseline()` |
+
+If you would like to calculate all the metrics then use `calculate_all_metrics()`. This is a slightly more efficient implementation since it only needs to sample from the posterior once for all 4 calculations instead of once for each metric.
+
+### Win Probability
+`win_prob()`
+
+### Value Remaining
+`value_remaining()`
+
+### Lift vs. Control 
+`lift_vs_control()`
+
+### Win Probability vs. Baseline
+`win_prob_vs_baseline()`
+
+### Calculate All Metrics
+`calculate_all_metrics()`
+
+### Sample From the Posterior
+`sample_from_posterior()`
