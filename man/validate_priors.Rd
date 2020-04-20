@@ -20,3 +20,10 @@ A named list of valid priors for the distribution.
 Validates list of priors against a vector of valid priors and if
    the values are not valid, default priors are returned.
 }
+\examples{
+priors <- list(a = 1, b = 2, c = 3)
+valid_priors <- c("b", "c")
+default_priors <- list(b = 1, c = 1)
+validate_priors(priors, valid_priors, default_priors)
+
+}

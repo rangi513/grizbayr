@@ -3,8 +3,8 @@
 #' Updates Beta Distribution with the Beta-Bernoulli
 #' conjugate prior update rule
 #'
-#' @param successes Double value of successes. Must be 0 or greater.
-#' @param failures Double value of failures. Must be 0 or greater.
+#' @param alpha Double value for alpha (count of successes). Must be 0 or greater.
+#' @param beta Double value for beta (count of failures). Must be 0 or greater.
 #' @param priors An optional list object that contains alpha0 and
 #'     beta0. Otherwise the function with use Beta(1,1) as the prior distribution.
 #'
@@ -13,11 +13,11 @@
 #' @export
 #'
 #' @examples
-#' update_beta(successes = 1, failures = 5, priors = list(alpha0 = 2, beta0 = 2))
-#' update_beta(successes = 20000, failures = 50000)
+#' update_beta(alpha = 1, beta = 5, priors = list(alpha0 = 2, beta0 = 2))
+#' update_beta(alpha = 20000, beta = 50000)
 #'
-update_beta <- function(successes, failures, priors = list()) {
-  validate_data_values(data_values = list(successes = successes, failures = failures))
+update_beta <- function(alpha, beta, priors = list()) {
+  validate_data_values(data_values = list(alpha = alpha, beta = beta))
 
   # Set Attributes
   valid_beta_params <- c("alpha0", "beta0")
@@ -30,5 +30,5 @@ update_beta <- function(successes, failures, priors = list()) {
   alpha0 <- validated_priors$alpha0
   beta0 <- validated_priors$beta0
 
-  list(alpha = alpha0 + successes, beta = beta0 + failures)
+  list(alpha = alpha0 + alpha, beta = beta0 + beta)
 }

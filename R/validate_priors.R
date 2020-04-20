@@ -10,13 +10,19 @@
 #' @return A named list of valid priors for the distribution.
 #'
 #' @importFrom purrr map
-#' @export
+#' @importFrom magrittr %>%
 #'
 #' @examples
+#' priors <- list(a = 1, b = 2, c = 3)
+#' valid_priors <- c("b", "c")
+#' default_priors <- list(b = 1, c = 1)
+#' validate_priors(priors, valid_priors, default_priors)
+#'
 validate_priors <- function(priors, valid_priors, default_priors) {
-  are_priors_valid <- purrr::map(valid_priors, ~ is_prior_valid(priors, .x))
+  are_priors_valid <- purrr::map(valid_priors, ~ is_prior_valid(priors, .x)) %>%
+    unlist()
   if (all(are_priors_valid)) {
-    as.list(priors[valid_priors])
+    priors[valid_priors] %>% as.list()
   } else{
     message("Using default priors.")
     default_priors

@@ -7,7 +7,6 @@
 #' @param valid_prior A character string
 #'
 #' @return Boolean (TRUE/FALSE)
-#' @export
 #'
 #' @examples
 #' example_prior_list <- list(x = 1, y = 10, z = 15)

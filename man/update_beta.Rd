@@ -4,12 +4,12 @@
 \alias{update_beta}
 \title{Update Beta}
 \usage{
-update_beta(successes, failures, priors = list())
+update_beta(alpha, beta, priors = list())
 }
 \arguments{
-\item{successes}{Double value of successes. Must be 0 or greater.}
+\item{alpha}{Double value for alpha (count of successes). Must be 0 or greater.}
 
-\item{failures}{Double value of failures. Must be 0 or greater.}
+\item{beta}{Double value for beta (count of failures). Must be 0 or greater.}
 
 \item{priors}{An optional list object that contains alpha0 and
 beta0. Otherwise the function with use Beta(1,1) as the prior distribution.}
@@ -22,7 +22,7 @@ Updates Beta Distribution with the Beta-Bernoulli
 conjugate prior update rule
 }
 \examples{
-update_beta(successes = 1, failures = 5, priors = list(alpha0 = 2, beta0 = 2))
-update_beta(successes = 20000, failures = 50000)
+update_beta(alpha = 1, beta = 5, priors = list(alpha0 = 2, beta0 = 2))
+update_beta(alpha = 20000, beta = 50000)
 
 }
