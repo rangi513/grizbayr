@@ -5,10 +5,9 @@ Version: 0.1.0
 Author: Ryan Angi
 Maintainer: Ryan Angi <rangi@redventures.com>
 Description: Uses simple Bayesian conjugate prior update rules to calculate 
-    the following metrics for various marketing objectives:
-      1. Win Probability of each option
-      2. Value Remaining in the Test
-      3. Percent Lift Over the Baseline
-License: MIT
+    the following metrics for various marketing objectives: Win Probability 
+    of each option, Value Remaining in the Test, and Percent Lift Over the 
+    Baseline.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
