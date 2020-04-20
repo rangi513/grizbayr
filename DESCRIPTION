@@ -15,5 +15,6 @@ RoxygenNote: 6.1.1
 Imports: 
     purrr
 Suggests: 
-    spelling
+    spelling,
+    testthat (>= 2.1.0)
 Language: en-US
