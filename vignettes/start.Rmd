@@ -1,0 +1,19 @@
+---
+title: "Getting Started with `grizbayr`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with `grizbayr`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Bayesian Inference is a method of statistical inference that can be used in the analysis of observed data from marketing tests. Bayesian updates start with a prior distribution (prior probable information about the world) and a likelihood function (a distribution from which the samples are drawn). Then, given some observed data, the prior can be multiplied by the likelihood of the data to produce a posterior distribution of probabilities. At the core of all of this is Bayes' Rule. 
+
+$$ P(A\ |\ Data) \sim P(Data\ |\ A) \cdot P(A)$$
