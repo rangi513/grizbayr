@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(dplyr)
 ```
 
 ## About the Package
@@ -29,29 +30,93 @@ This package is intended to abstract the math of the conjugate prior update rule
 
 Select which piece of information you would like to calculate.
 
-| Metric                       | Function Call            |
-|------------------------------|--------------------------|
-| Win Probability              | `win_prob()`             |
-| Value Remaining              | `value_remaining()`      |
-| Lift vs. Control             | `lift_vs_control()`      |
-| Win Probability vs. Baseline | `win_prob_vs_baseline()` |
+| Metric                       | Function Call                     |
+|------------------------------|-----------------------------------|
+| Win Probability              | `estimate_win_prob()`             |
+| Value Remaining              | `estimate_value_remaining()`      |
+| Lift vs. Control             | `estimate_lift()`                 |
+| Win Probability vs. Baseline | `estimate_win_prob_vs_baseline()` |
 
 If you would like to calculate all the metrics then use `calculate_all_metrics()`. This is a slightly more efficient implementation since it only needs to sample from the posterior once for all 4 calculations instead of once for each metric.
 
+### Create an Input Dataframe or Tibble
+
+All of these functions require a very specific tibble format. However, the same tibble can be used in all metric calculations. A tibble is used here because it has the additional check that all column lengths are the same. A tibble of this format can also conveniently be created using dplyr's `group_by() %>% summarise()` sequence of functions.
+
+The columns in the following table are required if there is an `X` in the box for the distribution. (Int columns can also be dbl due to R coercian)
+
+| Distribution Type         | option_name (char) | sum_impressions (int) | sum_clicks (int) | sum_sessions (int) | sum_conversions (dbl) | sum_revenue (dbl) | sum_cost (dbl) | sum_sessions_2 (int) | sum_conversions_2 (dbl) | sum_revenue_2 (dbl) |
+|---------------------------|:------------------:|:---------------------:|:----------------:|:------------------:|:---------------------:|:-----------------:|:--------------:|:--------------------:|:-----------------------:|:-------------------:|
+| Conversion Rate           |          X         |                       |         X        |                    |           X           |                   |                |                      |                         |                     |
+| Response Rate             |          X         |                       |                  |          X         |           X           |                   |                |                      |                         |                     |
+| Multi Response Rate       |          X         |                       |                  |          X         |           X           |                   |                |           X          |             X           |                     |
+| Click Through Rate (CTR)  |          X         |           X           |         X        |                    |                       |                   |                |                      |                         |                     |
+| Revenue Per Session       |          X         |                       |                  |          X         |           X           |         X         |                |                      |                         |                     |
+| Multi Revenue Per Session |          X         |                       |                  |          X         |           X           |         X         |                |           X          |             X           |           X         |
+| Cost Per Activation (CPA) |          X         |                       |         X        |                    |           X           |                   |        X       |                      |                         |                     |
+| Total CM                  |          X         |                       |         X        |                    |           X           |         X         |        X       |                      |                         |                     |
+| CM Per Click              |          X         |                       |         X        |                    |           X           |         X         |        X       |                      |                         |                     |
+| Cost Per Click (CPC)      |          X         |                       |         X        |                    |                       |                   |        X       |                      |                         |                     |
+
+#### Example:
+We will use the Conversion Rate distribution for this example so we need the columns **option_name**, **sum_clicks**, and **sum_conversions**.
+
+```{r}
+raw_data_long_format <- tibble::tribble(
+   ~option_name, ~clicks, ~conversions,
+            "A",       6,           3,
+            "A",       1,           0,
+            "B",       2,           1,
+            "A",       2,           0,
+            "A",       1,           0,
+            "B",       5,           2,
+            "A",       1,           0,
+            "B",       1,           1,
+            "B",       1,           0,
+            "A",       3,           1,
+            "B",       1,           0,
+            "A",       1,           1
+)
+
+raw_data_long_format %>% 
+  dplyr::group_by(option_name) %>% 
+  dplyr::summarise(sum_clicks = sum(clicks), 
+                   sum_conversions = sum(conversions))
+```
+This input dataframe can also be created manually if the aggregations are already done in an external program.
+
+```{r}
+input_df <- tibble::tibble(
+  option_name = c("A", "B"),
+  sum_clicks = c(1000, 1000),
+  sum_conversions = c(100, 120)
+)
+input_df
+```
+
+`input_df` is used in the following examples. 
+
 ### Win Probability
-`win_prob()`
+`estimate_win_prob(input_df, distribution = "conversion_rate")`
 
-### Value Remaining
-`value_remaining()`
+### Value Remaining (Loss)
+`estimate_value_remaining(input_df, distribution = "conversion_rate")`
 
-### Lift vs. Control 
-`lift_vs_control()`
+The `metric` argument defaults to `relative` which produces a percent lift vs the baseline. Sometimes we may want to understand this lift in absolute terms (especially when samples from the posteriors could be negative, such as Contribution Margin (CM).)
+
+`estimate_value_remaining(input_df, distribution = "conversion_rate", metric = "absolute)`
+
+
+### Estimate Lift
+`estimate_lift(input_df, distribution = "conversion_rate", baseline_option = "A")`
+
+`estimate_lift(input_df, distribution = "conversion_rate", baseline_option = "A", metric = "absolute")`
 
 ### Win Probability vs. Baseline
-`win_prob_vs_baseline()`
+`estimate_win_prob_vs_baseline(input_df, distribution = "conversion_rate", baseline_option = "A")`
 
-### Calculate All Metrics
-`calculate_all_metrics()`
+### Estimate All Metrics
+`estimate_all_metrics(input_df)`
 
 ### Sample From the Posterior
-`sample_from_posterior()`
+`sample_from_posterior(input_df, distribution = "conversion_rate)`

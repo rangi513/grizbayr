@@ -2,6 +2,12 @@
 
 export(update_beta)
 export(update_gamma)
+export(validate_input_df)
+importFrom(dplyr,"%>%")
+importFrom(dplyr,filter)
+importFrom(dplyr,select)
+importFrom(dplyr,select_if)
 importFrom(magrittr,"%>%")
 importFrom(purrr,map)
+importFrom(purrr,map_lgl)
 importFrom(purrr,walk)

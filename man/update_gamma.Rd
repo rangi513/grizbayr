@@ -7,19 +7,19 @@
 update_gamma(k, theta, priors = list())
 }
 \arguments{
-\item{k}{Double value for \k (total revenue generating events). Must be 0 or greater.}
+\item{k}{Double value for \eqn{k} (total revenue generating events). Must be 0 or greater.}
 
-\item{theta}{Double value for \theta (sum of revenue). Must be 0 or greater.}
+\item{theta}{Double value for \eqn{\theta} (sum of revenue). Must be 0 or greater.}
 
 \item{priors}{An optional list object that contains k0 and
-theta0. Otherwise the function with use Gamma(1,250) as the prior distribution.}
+theta0. Otherwise the function will use \eqn{Gamma(1,250)} as the prior distribution.}
 }
 \value{
 A list object that contains `k` and `theta`
 }
 \description{
 Updates Gamma Distribution with the Gamma-Exponential
-conjugate prior update rule. Parameterized by \k and \theta (not \alpha, \beta)
+conjugate prior update rule. Parameterized by \eqn{k} and \eqn{\theta} (not \eqn{\alpha, \beta})
 }
 \examples{
 update_gamma(k = 1, theta = 100, priors = list(k0 = 2, theta0 = 1000))

@@ -1,0 +1,56 @@
+#' Validate Input DataFrame
+#'
+#' Validates the input dataframe has the correct type, correct required column names,
+#' that the distribution is valid, that the column types are correct, and that the
+#' column values are greater than or equal to 0 when they are numeric.
+#'
+#' @param input_df Dataframe containing option_name (str) and various other columns
+#'     depending on the distribution type. See vignette for more details.
+#' @param distribution String of the distribution name
+#'
+#' @return Bool TRUE if all checks pass.
+#'
+#' @importFrom dplyr select select_if filter %>%
+#' @importFrom purrr walk
+#' @export
+#'
+#' @examples
+#' TODO:write examples and unit test
+validate_input_df <- function(input_df, distribution){
+  if(!is.data.frame(input_df)){
+    stop("input_df is not of type data frame.")
+  }
+
+  valid_distribution_names <- unique(distribution_column_mapping$distribution_type)
+  if(!distribution %in% valid_distribution_names){
+    comma_sep_names<- paste(valid_distribution_names, collapse = ", ")
+    stop(paste(distribution),
+         "is an invalid distribution. Select a distribution from the following:",
+         comma_sep_names)
+  }
+
+  required_column_names <- distribution_column_mapping %>%
+    dplyr::filter(distribution_type == distribution) %>%
+    dplyr::select(-distribution_type) %>%
+    dplyr::select_if(~ sum(.) == 1) %>%
+    colnames()
+
+  purrr::walk(required_column_names, ~validate_input_column(.x, input_df))
+  TRUE
+}
+
+
+
+distribution_column_mapping <- tibble::tribble(
+  ~ distribution_type     , ~ option_name, ~ sum_impressions, ~ sum_clicks, ~ sum_sessions, ~ sum_conversions, ~ sum_revenue, ~ sum_cost, ~ sum_sessions_2, ~ sum_conversions_2, ~ sum_revenue_2,
+  "conversion_rate"       ,             1,                 0,            1,              0,                 1,             0,          0,                0,                   0,               0,
+  "response_rate"         ,             1,                 0,            0,              1,                 1,             0,          0,                0,                   0,               0,
+  "multi_response_rate"   ,             1,                 0,            0,              1,                 1,             0,          0,                1,                   1,               0,
+  "ctr"                   ,             1,                 1,            1,              0,                 0,             0,          0,                0,                   0,               0,
+  "rev_per_session"       ,             1,                 0,            0,              1,                 1,             1,          0,                0,                   0,               0,
+  "multi_rev_per_session" ,             1,                 0,            0,              1,                 1,             1,          0,                1,                   1,               1,
+  "cpa"                   ,             1,                 0,            1,              0,                 1,             0,          1,                0,                   0,               0,
+  "total_cm"              ,             1,                 0,            1,              0,                 1,             1,          1,                0,                   0,               0,
+  "cm_per_click"          ,             1,                 0,            1,              0,                 1,             1,          1,                0,                   0,               0,
+  "cpc"                   ,             1,                 0,            1,              0,                 0,             0,          1,                0,                   0,               0
+)
