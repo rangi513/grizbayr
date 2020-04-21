@@ -39,18 +39,3 @@ validate_input_df <- function(input_df, distribution){
   TRUE
 }
 
-
-
-distribution_column_mapping <- tibble::tribble(
-  ~ distribution_type     , ~ option_name, ~ sum_impressions, ~ sum_clicks, ~ sum_sessions, ~ sum_conversions, ~ sum_revenue, ~ sum_cost, ~ sum_sessions_2, ~ sum_conversions_2, ~ sum_revenue_2,
-  "conversion_rate"       ,             1,                 0,            1,              0,                 1,             0,          0,                0,                   0,               0,
-  "response_rate"         ,             1,                 0,            0,              1,                 1,             0,          0,                0,                   0,               0,
-  "multi_response_rate"   ,             1,                 0,            0,              1,                 1,             0,          0,                1,                   1,               0,
-  "ctr"                   ,             1,                 1,            1,              0,                 0,             0,          0,                0,                   0,               0,
-  "rev_per_session"       ,             1,                 0,            0,              1,                 1,             1,          0,                0,                   0,               0,
-  "multi_rev_per_session" ,             1,                 0,            0,              1,                 1,             1,          0,                1,                   1,               1,
-  "cpa"                   ,             1,                 0,            1,              0,                 1,             0,          1,                0,                   0,               0,
-  "total_cm"              ,             1,                 0,            1,              0,                 1,             1,          1,                0,                   0,               0,
-  "cm_per_click"          ,             1,                 0,            1,              0,                 1,             1,          1,                0,                   0,               0,
-  "cpc"                   ,             1,                 0,            1,              0,                 0,             0,          1,                0,                   0,               0
-)
