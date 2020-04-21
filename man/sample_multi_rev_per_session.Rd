@@ -16,12 +16,11 @@ sum_revenue_2 (dbl).}
 \item{n_samples}{Optional integer value. Defaults to 50,000 samples.}
 }
 \value{
-input_df with 2 new nested columns `beta_params` and `samples`
+input_df with 4 new nested columns `dirichlet_params`,
+     `gamma_params_A`, `gamma_params_B`, and `samples`.
 }
 \description{
-Adds 5 new nested columns to the input_df: `beta_params_A`, `beta_parms_B`,
+Adds 5 new nested columns to the input_df: `dirichlet_params`,
     `gamma_params_A`, `gamma_params_B`, and `samples`.
-    `beta_params` in each row should be a tibble of length 2 (\eqn{\alpha}
-        and \eqn{\beta} parameters)
     `samples` in each row should be a tibble of length `n_samples`
 }

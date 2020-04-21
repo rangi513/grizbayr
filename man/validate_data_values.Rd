@@ -17,6 +17,7 @@ Validate Data Values
 }
 \examples{
 validate_data_values(data_values = list(successes = 22, failures = 100))
+## DONT RUN
 \donttest{
 validate_data_values(data_values = list(successes = 22, failures = -1))
 }

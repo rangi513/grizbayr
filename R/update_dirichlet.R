@@ -14,6 +14,7 @@
 #'
 #' @return tibble with columns alpha_0, alpha_1, and alpha_2
 #' @export
+#' @importFrom tibble tibble
 #'
 #' @examples
 #' update_dirichlet(alpha_0 = 20, alpha_1 = 5, alpha_2 = 2)
@@ -27,12 +28,12 @@ update_dirichlet <- function(alpha_0, alpha_1, alpha_2, priors = list()) {
 
   # Set Attributes
   valid_dirichlet_params <- c("alpha00", "alpha01", "alpha02")
-  default_beta_priors <- list(alpha00 = 1, alpha01 = 1, alpha02 = 1)
+  default_dirichlet_priors <- list(alpha00 = 1, alpha01 = 1, alpha02 = 1)
 
   # Validate Priors
   validated_priors <- validate_priors(priors = priors,
-                                      valid_priors = valid_beta_params,
-                                      default_priors = default_beta_priors)
+                                      valid_priors = valid_dirichlet_params,
+                                      default_priors = default_dirichlet_priors)
   alpha00 <- validated_priors$alpha00
   alpha01 <- validated_priors$alpha01
   alpha02 <- validated_priors$alpha02
