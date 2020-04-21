@@ -45,18 +45,17 @@ All of these functions require a very specific tibble format. However, the same 
 
 The columns in the following table are required if there is an `X` in the box for the distribution. (Int columns can also be dbl due to R coercian)
 
-| Distribution Type         | option_name (char) | sum_impressions (int) | sum_clicks (int) | sum_sessions (int) | sum_conversions (dbl) | sum_revenue (dbl) | sum_cost (dbl) | sum_sessions_2 (int) | sum_conversions_2 (dbl) | sum_revenue_2 (dbl) |
-|---------------------------|:------------------:|:---------------------:|:----------------:|:------------------:|:---------------------:|:-----------------:|:--------------:|:--------------------:|:-----------------------:|:-------------------:|
-| Conversion Rate           |          X         |                       |         X        |                    |           X           |                   |                |                      |                         |                     |
-| Response Rate             |          X         |                       |                  |          X         |           X           |                   |                |                      |                         |                     |
-| Multi Response Rate       |          X         |                       |                  |          X         |           X           |                   |                |           X          |             X           |                     |
-| Click Through Rate (CTR)  |          X         |           X           |         X        |                    |                       |                   |                |                      |                         |                     |
-| Revenue Per Session       |          X         |                       |                  |          X         |           X           |         X         |                |                      |                         |                     |
-| Multi Revenue Per Session |          X         |                       |                  |          X         |           X           |         X         |                |           X          |             X           |           X         |
-| Cost Per Activation (CPA) |          X         |                       |         X        |                    |           X           |                   |        X       |                      |                         |                     |
-| Total CM                  |          X         |                       |         X        |                    |           X           |         X         |        X       |                      |                         |                     |
-| CM Per Click              |          X         |                       |         X        |                    |           X           |         X         |        X       |                      |                         |                     |
-| Cost Per Click (CPC)      |          X         |                       |         X        |                    |                       |                   |        X       |                      |                         |                     |
+| Distribution Type         | option_name (char) | sum_impressions (int) | sum_clicks (int) | sum_sessions (int) | sum_conversions (dbl) | sum_revenue (dbl) | sum_cost (dbl) | sum_conversions_2 (dbl) | sum_revenue_2 (dbl) |
+|---------------------------|:------------------:|:---------------------:|:----------------:|:------------------:|:---------------------:|:-----------------:|:--------------:|:-----------------------:|:-------------------:|
+| Conversion Rate           |          X         |                       |         X        |                    |           X           |                   |                |                         |                     |
+| Response Rate             |          X         |                       |                  |          X         |           X           |                   |                |                         |                     |
+| Click Through Rate (CTR)  |          X         |           X           |         X        |                    |                       |                   |                |                         |                     |
+| Revenue Per Session       |          X         |                       |                  |          X         |           X           |         X         |                |                         |                     |
+| Multi Revenue Per Session |          X         |                       |                  |          X         |           X           |         X         |                |             X           |           X         |
+| Cost Per Activation (CPA) |          X         |                       |         X        |                    |           X           |                   |        X       |                         |                     |
+| Total CM                  |          X         |                       |         X        |                    |           X           |         X         |        X       |                         |                     |
+| CM Per Click              |          X         |                       |         X        |                    |           X           |         X         |        X       |                         |                     |
+| Cost Per Click (CPC)      |          X         |                       |         X        |                    |                       |                   |        X       |                         |                     |
 
 #### Example:
 We will use the Conversion Rate distribution for this example so we need the columns **option_name**, **sum_clicks**, and **sum_conversions**.
@@ -120,3 +119,8 @@ The `metric` argument defaults to `relative` which produces a percent lift vs th
 
 ### Sample From the Posterior
 `sample_from_posterior(input_df, distribution = "conversion_rate)`
+
+## Valid Posteriors
+Beta - alpha0, beta0
+Gamma - k0, theta0
+Dirichlet - alpha_00 (none), alpha_01 (first conversion type), alpha_02 (alternate conversion type)

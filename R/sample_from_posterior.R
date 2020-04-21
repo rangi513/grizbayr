@@ -25,7 +25,6 @@ sample_from_posterior <- function(input_df, distribution, priors = list(), n_sam
   samples_tibble <- switch(distribution,
    "conversion_rate" =       sample_conv_rate(input_df, priors, n_samples),
    "response_rate" =         sample_response_rate(input_df, priors, n_samples),
-   "multi_response_rate" =   sample_multi_response_rate(input_df, priors, n_samples),
    "ctr" =                   sample_ctr(input_df, priors, n_samples),
    "rev_per_session" =       sample_rev_per_session(input_df, priors, n_samples),
    "multi_rev_per_session" = sample_multi_rev_per_session(input_df, priors, n_samples),

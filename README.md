@@ -16,7 +16,6 @@ This allows a user to implement Bayesian Inference methods when analyzing the re
 
  - Conversion Rate
  - Response Rate
- - Multi Response Rate
  - Click Through Rate (CTR)
  - Revenue Per Session
  - Multi Revenue Per Session
@@ -34,7 +33,7 @@ To add a new posterior distribution you must complete the following:
   1. A new row must be added to the internal data object `distribution_column_mapping`. 
     - Select this object from the package
     - Add a new row with a 1 for every column that is required for this distribution (this is for data validation and clear alerting for the end user)
-    - Save the updated tibble object using `use_data(new_tibble, internal = TRUE)` and it will be saved as `sysdata.rda` in the package for internal use.
+    - Save the updated tibble object using `use_data(new_tibble, internal = TRUE, overwrite = TRUE)` and it will be saved as `sysdata.rda` in the package for internal use.
     - Update the start.Rmd markdown table to include which columns are required for your function.
   1. Create a PR for review.  
 

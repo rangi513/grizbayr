@@ -1,5 +1,6 @@
 #' Sample Response Rate
 #'
+#' This is an alias for sample_conv_rate with a different input column.
 #' Adds 2 new nested columns to the input_df: `beta_params` and `samples`
 #'     `beta_params` in each row should be a tibble of length 2 (\eqn{\alpha}
 #'         and \eqn{\beta} parameters)
