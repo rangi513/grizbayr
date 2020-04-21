@@ -18,8 +18,17 @@ depending on the distribution type. See vignette for more details.}
 \item{n_samples}{Optional integer value. Defaults to 50,000 samples.}
 }
 \value{
-A tibble with 2 columns: option_name (chr) and sample (dbl) [long form data].
+A tibble with 2 columns: option_name (chr) and samples (dbl) [long form data].
 }
 \description{
 Selects which function to use to sample from the posterior distribution
+}
+\examples{
+input_df <- tibble::tibble(
+   option_name = c("A", "B"),
+   sum_clicks = c(1000, 1000),
+   sum_conversions = c(100, 120)
+)
+sample_from_posterior(input_df, "conversion_rate")
+
 }

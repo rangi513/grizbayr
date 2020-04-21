@@ -15,7 +15,7 @@ update_beta(alpha, beta, priors = list())
 beta0. Otherwise the function with use Beta(1,1) as the prior distribution.}
 }
 \value{
-A list object that contains `alpha` and `beta`
+A tibble object that contains `alpha` and `beta`
 }
 \description{
 Updates Beta Distribution with the Beta-Bernoulli

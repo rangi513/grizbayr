@@ -9,8 +9,9 @@
 #'     beta0. Otherwise the function with use Beta(1,1) as the prior distribution.
 #'
 #'
-#' @return A list object that contains `alpha` and `beta`
+#' @return A tibble object that contains `alpha` and `beta`
 #' @export
+#' @importFrom tibble tibble
 #'
 #' @examples
 #' update_beta(alpha = 1, beta = 5, priors = list(alpha0 = 2, beta0 = 2))
@@ -30,5 +31,5 @@ update_beta <- function(alpha, beta, priors = list()) {
   alpha0 <- validated_priors$alpha0
   beta0 <- validated_priors$beta0
 
-  list(alpha = alpha0 + alpha, beta = beta0 + beta)
+  tibble::tibble(alpha = alpha0 + alpha, beta = beta0 + beta)
 }

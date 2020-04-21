@@ -11,6 +11,7 @@
 #'
 #' @return A list object that contains `k` and `theta`
 #' @export
+#' @importFrom tibble tibble
 #'
 #' @examples
 #' update_gamma(k = 1, theta = 100, priors = list(k0 = 2, theta0 = 1000))
@@ -30,5 +31,5 @@ update_gamma <- function(k, theta, priors = list()) {
   k0 <- validated_priors$k0
   theta0 <- validated_priors$theta0
 
-  list(k = k0 + k, theta = theta0/(1 + theta0 * theta))
+  tibble::tibble(k = k0 + k, theta = theta0/(1 + theta0 * theta))
 }
