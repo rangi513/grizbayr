@@ -21,5 +21,11 @@ that the distribution is valid, that the column types are correct, and that the
 column values are greater than or equal to 0 when they are numeric.
 }
 \examples{
-TODO:write examples and unit test
+input_df <- tibble::tibble(
+   option_name = c("A", "B"),
+   sum_clicks = c(1000, 1000),
+   sum_conversions = c(100, 120)
+)
+validate_input_df(input_df, "conversion_rate")
+
 }

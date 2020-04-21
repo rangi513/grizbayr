@@ -11,8 +11,6 @@
 #'
 #' @importFrom purrr map_lgl
 #'
-#' @examples
-#' TODO: write examples and unit test
 validate_input_column <- function(column_name, input_df){
   # Ensure All Columns Exist
   if(!column_name %in% colnames(input_df)){

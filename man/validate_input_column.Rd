@@ -19,6 +19,3 @@ None
 Validates the input column exists in the dataframe, is of the correct type,
 and that all values are greater than or equal to 0.
 }
-\examples{
-TODO: write examples and unit test
-}
