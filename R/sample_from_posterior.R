@@ -10,7 +10,7 @@
 #'
 #' @return A tibble with 2 columns: option_name (chr) and samples (dbl) [long form data].
 #' @export
-#' @importFrom dplyr select
+#' @importFrom dplyr select %>%
 #' @importFrom tidyr unnest
 #'
 #' @examples

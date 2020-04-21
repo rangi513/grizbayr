@@ -11,7 +11,7 @@
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom purrr map map2
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate %>%
 #'
 #' @return input_df with 2 new nested columns `beta_params` and `samples`
 #'
