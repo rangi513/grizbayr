@@ -21,6 +21,9 @@ depending on the distribution type. See vignette for more details.}
 absolute will be the difference, on the outcome scale. 0 when best = wrt_option
 lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
 relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option}
+
+\item{threshold}{The confidence interval specifying what the "worst case scenario should be.
+Defaults to 95%. (optional)}
 }
 \value{
 numeric value remaining at the specified threshold
