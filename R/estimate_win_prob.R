@@ -26,5 +26,5 @@ estimate_win_prob <- function(input_df, distribution, priors = list()){
   posterior_samples <- sample_from_posterior(input_df, distribution, priors)
 
   # Calculate Win Probability
-  estimate_win_prob_internal(posterior_samples)
+  estimate_win_prob_given_posterior(posterior_samples)
 }
