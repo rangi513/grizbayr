@@ -1,6 +1,7 @@
 #' Estimate Loss
 #'
-#' @param posteriors tibble returned by sample_rewards_... n_samples by n_options
+#' @param posterior_samples Tibble returned from sample_from_posterior with 3 columns
+#'   `option_name`, `samples`, and `sample_id`.
 #' @param wrt_option string the option loss is calculated with respect to (wrt). If NULL, the best option will be chosen.
 #' @param metric string the type of loss.
 #'   absolute will be the difference, on the outcome scale. 0 when best = wrt_option
@@ -18,13 +19,9 @@ estimate_loss <- function(posterior_samples, distribution, wrt_option = NULL, me
 
   # estimate 'best' option if no wrt option is provided
   if (is.null(wrt_option)) {
-    wp <- estimate_win_prob_given_posterior(posterior_samples = posterior_samples,
-                                            winner_is_max = is_winner_max(distribution))
-    wrt_option <- wp %>%
-      dplyr::filter(win_prob_raw == max(win_prob_raw)) %>%
-      magrittr::use_series(option_name)
-  } else if(!(wrt_option %in% posterior_samples$option_name)){
-    stop(paste(wrt_option, "is an invalid wrt_option. Not one of in the posterior_samples options."))
+    wrt_option <- find_best_option(posterior_samples, distribution)
+  } else {
+    validate_wrt_option(wrt_option, posterior_samples)
   }
 
   posterior_samples_wide <- posterior_samples %>%

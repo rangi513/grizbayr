@@ -5,7 +5,7 @@
 #'
 #' @return Tibble of each option_name and the win probability expressed as a percentage and a decimal `raw`
 #' @export
-#' @importFrom dplyr %>% group_by filter summarise mutate arrange ungroup
+#' @importFrom dplyr %>% group_by filter summarise mutate arrange
 #'
 estimate_win_prob_given_posterior <- function(posterior_samples, winner_is_max = TRUE){
   validate_posterior_samples(posterior_samples)
