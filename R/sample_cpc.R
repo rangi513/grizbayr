@@ -7,7 +7,7 @@
 #'
 #' @param input_df Dataframe containing option_name (str), sum_clicks (dbl), sum_cost (dbl).
 #' @param priors Optional list of priors {k0, theta0} for Gamma.
-#'     Default \eqn{Gamma(1, 250)}} will be use otherwise.
+#'     Default \eqn{Gamma(1, 250)} will be use otherwise.
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom purrr map map2

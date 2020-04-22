@@ -9,9 +9,9 @@
 #'
 #' @return None
 #'
-#' @importFrom purrr map_lgl
+#' @importFrom purrr some
 #'
-validate_input_column <- function(column_name, input_df){
+validate_input_column <- function(column_name, input_df, greater_than_zero = TRUE){
   # Ensure All Columns Exist
   if(!column_name %in% colnames(input_df)){
     stop(paste(column_name, "is a required column for this distribution type and is not found in the input_df."))
@@ -28,10 +28,12 @@ validate_input_column <- function(column_name, input_df){
     }
   }
 
-  # Ensure all values are greater than or equal to 0.
-  if(any(purrr::map_lgl(input_df[[column_name]], ~ .x < 0))){
-    stop(paste("All values in column `",
-               column_name,
-               "` must be greater than or equal to zero."))
+  if(greater_than_zero){
+    # Ensure all values are greater than or equal to 0.
+    if(purrr::some(input_df[[column_name]], ~ .x < 0)){
+      stop(paste("All values in column `",
+                 column_name,
+                 "` must be greater than or equal to zero."))
+    }
   }
 }

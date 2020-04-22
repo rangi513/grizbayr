@@ -10,8 +10,10 @@
 #'
 #' @return A tibble with 2 columns: option_name (chr) and samples (dbl) [long form data].
 #' @export
-#' @importFrom dplyr select %>%
+#' @importFrom dplyr select mutate row_number %>%
 #' @importFrom tidyr unnest
+#' @importFrom purrr map
+#' @importFrom tibble tibble
 #'
 #' @examples
 #' input_df <- tibble::tibble(
@@ -38,8 +40,14 @@ sample_from_posterior <- function(input_df, distribution, priors = list(), n_sam
            paste(distribution_column_mapping$distribution_type, collapse = ", "))
      )
   )
-  # Clean tibble into expected 2 dimensional output
+  # Clean tibble into expected 2 dimensional output with added sample_id
   samples_tibble %>%
-    dplyr::select(option_name, samples) %>%
-    tidyr::unnest(cols = c(samples))
+     dplyr::mutate(samples = purrr::map(.x = samples,
+                                        ~ dplyr::mutate(
+                                           .data = tibble::tibble(samples = .x),
+                                           sample_id = dplyr::row_number())
+                                        )
+                   ) %>%
+     dplyr::select(option_name, samples) %>%
+     tidyr::unnest(cols = c(samples))
 }

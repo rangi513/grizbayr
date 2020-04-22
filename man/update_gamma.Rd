@@ -4,7 +4,7 @@
 \alias{update_gamma}
 \title{Update Gamma}
 \usage{
-update_gamma(k, theta, priors = list())
+update_gamma(k, theta, priors = list(), alternate_priors = FALSE)
 }
 \arguments{
 \item{k}{Double value for \eqn{k} (total revenue generating events). Must be 0 or greater.}
@@ -12,7 +12,12 @@ update_gamma(k, theta, priors = list())
 \item{theta}{Double value for \eqn{\theta} (sum of revenue). Must be 0 or greater.}
 
 \item{priors}{An optional list object that contains k0 and
-theta0. Otherwise the function will use \eqn{Gamma(1,250)} as the prior distribution.}
+theta0. Otherwise the function will use \eqn{Gamma(1,250)} as the prior distribution.
+If a second gamma distribution is used k01 and theta01 can be defined as separate priors
+when alternate_priors is set to TRUE.}
+
+\item{alternate_priors}{Boolean Defaults to FALSE. Allows a user to specify alternate
+prior names so the same prior isn't required when multiple gamma distributions are used.}
 }
 \value{
 A list object that contains `k` and `theta`

@@ -4,7 +4,7 @@
 \alias{validate_input_column}
 \title{Validate Input Column}
 \usage{
-validate_input_column(column_name, input_df)
+validate_input_column(column_name, input_df, greater_than_zero = TRUE)
 }
 \arguments{
 \item{column_name}{String value of the column name}

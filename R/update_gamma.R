@@ -15,7 +15,7 @@
 #' @return A list object that contains `k` and `theta`
 #' @export
 #' @importFrom tibble tibble
-#' @importFrom magrittr setnames
+#' @importFrom magrittr set_names
 #'
 #' @examples
 #' update_gamma(k = 1, theta = 100, priors = list(k0 = 2, theta0 = 1000))

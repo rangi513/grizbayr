@@ -9,6 +9,9 @@ sample_cpc(input_df, priors, n_samples = 50000)
 \arguments{
 \item{input_df}{Dataframe containing option_name (str), sum_clicks (dbl), sum_cost (dbl).}
 
+\item{priors}{Optional list of priors {k0, theta0} for Gamma.
+Default \eqn{Gamma(1, 250)} will be use otherwise.}
+
 \item{n_samples}{Optional integer value. Defaults to 50,000 samples.}
 }
 \value{
