@@ -51,10 +51,10 @@ sample_multi_rev_per_session <- function(input_df, priors, n_samples = 5e4){
                                             shape = .x$k,
                                             scale = .x$theta)
       ),
-      samples = purrr::pmap(.l = list(dirichlet_samples,
-                                      gamma_samples_A,
-                                      gamma_samples_B),
-                            ~ ..1$alpha_1 / ..2 + ..1$alpha_2 /..3
+      samples = purrr::pmap(.l = list(conv_rates = dirichlet_samples,
+                                      inverse_rev_A = gamma_samples_A,
+                                      inverse_rev_B = gamma_samples_B),
+                            ~ calculate_multi_rev_per_session(...)
       )
     ) %>%
     select(

@@ -53,7 +53,7 @@ The columns in the following table are required if there is an `X` in the box fo
 | Revenue Per Session       |          X         |                       |                  |          X         |           X           |         X         |                |                         |                     |
 | Multi Revenue Per Session |          X         |                       |                  |          X         |           X           |         X         |                |             X           |           X         |
 | Cost Per Activation (CPA) |          X         |                       |         X        |                    |           X           |                   |        X       |                         |                     |
-| Total CM                  |          X         |                       |         X        |                    |           X           |         X         |        X       |                         |                     |
+| Total CM                  |          X         |           X           |         X        |                    |           X           |         X         |        X       |                         |                     |
 | CM Per Click              |          X         |                       |         X        |                    |           X           |         X         |        X       |                         |                     |
 | Cost Per Click (CPC)      |          X         |                       |         X        |                    |                       |                   |        X       |                         |                     |
 
@@ -122,5 +122,5 @@ The `metric` argument defaults to `relative` which produces a percent lift vs th
 
 ## Valid Posteriors
 Beta - alpha0, beta0
-Gamma - k0, theta0
+Gamma - k0, theta0 (k01, theta01 if alternate Gamma priors are required)
 Dirichlet - alpha_00 (none), alpha_01 (first conversion type), alpha_02 (alternate conversion type)
