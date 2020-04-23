@@ -20,7 +20,7 @@ sample_rev_per_session <- function(input_df, priors, n_samples = 5e4){
   input_df %>%
     dplyr::mutate(
       beta_params = purrr::map2(.x = sum_conversions,
-                                .y = sum_clicks,
+                                .y = sum_sessions,
                                 ~ update_beta(alpha = .x,
                                               beta = .y - .x,
                                               priors = priors)

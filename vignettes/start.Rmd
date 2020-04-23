@@ -1,8 +1,8 @@
 ---
-title: "Getting Started with `grizbayr`"
+title: "Start (Examples)"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting Started with `grizbayr`}
+  %\VignetteIndexEntry{start}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,6 +12,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+```
+
+```{r setup, warning=FALSE, message=FALSE}
+library(grizbayr)
 library(dplyr)
 ```
 
@@ -22,7 +26,7 @@ Bayesian Inference is a method of statistical inference that can be used in the 
 $$ P(A\ |\ Data) \sim P(Data\ |\ A) \cdot P(A)$$
 This package is intended to abstract the math of the conjugate prior update rules to provide 3 pieces of information for a user:
 
-1. Win Probability
+1. Win Probability (overall and vs baseline)
 1. Value Remaining
 1. Lift vs. Control
 
@@ -32,9 +36,10 @@ Select which piece of information you would like to calculate.
 
 | Metric                       | Function Call                     |
 |------------------------------|-----------------------------------|
+| All Below Metrics            | `calculate_all_metrics()`         |
 | Win Probability              | `estimate_win_prob()`             |
 | Value Remaining              | `estimate_value_remaining()`      |
-| Lift vs. Control             | `estimate_lift()`                 |
+| Lift vs. Control             | `estimate_lift_vs_baseline()`     |
 | Win Probability vs. Baseline | `estimate_win_prob_vs_baseline()` |
 
 If you would like to calculate all the metrics then use `calculate_all_metrics()`. This is a slightly more efficient implementation since it only needs to sample from the posterior once for all 4 calculations instead of once for each metric.
@@ -85,42 +90,135 @@ raw_data_long_format %>%
 This input dataframe can also be created manually if the aggregations are already done in an external program.
 
 ```{r}
+# Since this is a stochastic process with a random number generator,
+# it is worth setting the seed to get consistent results.
+set.seed(1776)
+
 input_df <- tibble::tibble(
-  option_name = c("A", "B"),
-  sum_clicks = c(1000, 1000),
-  sum_conversions = c(100, 120)
+  option_name = c("A", "B", "C"),
+  sum_clicks = c(1000, 1000, 1000),
+  sum_conversions = c(100, 120, 110)
 )
 input_df
 ```
 
 `input_df` is used in the following examples. 
 
+### Estimate All Metrics
+
+This function wraps all the below functions into one call.
+
+```{r}
+estimate_all_values(input_df, distribution = "conversion_rate", wrt_option_lift = "A")
+```
+
+
 ### Win Probability
-`estimate_win_prob(input_df, distribution = "conversion_rate")`
+
+This produces a tibble with all the option names, the `win_prob_raw` so this can be used as a double, and a cleaned string `win_prob` where the decimal is represented as a percent. 
+
+```{r}
+estimate_win_prob(input_df, distribution = "conversion_rate")
+```
 
 ### Value Remaining (Loss)
-`estimate_value_remaining(input_df, distribution = "conversion_rate")`
 
-The `metric` argument defaults to `relative` which produces a percent lift vs the baseline. Sometimes we may want to understand this lift in absolute terms (especially when samples from the posteriors could be negative, such as Contribution Margin (CM).)
+Value Remaining is a measure of loss. If B is selected as the current best option, we can estimate with 95% confidence (default), that an alternative option is not more than X% worse than the current expected best option. 
 
-`estimate_value_remaining(input_df, distribution = "conversion_rate", metric = "absolute)`
+```{r}
+estimate_value_remaining(input_df, distribution = "conversion_rate")
+```
 
+This number can also be framed in absolute dollar terms (or percentage points in the case of a rate metric).
+
+```{r}
+estimate_value_remaining(input_df, distribution = "conversion_rate", metric = "absolute")
+```
 
 ### Estimate Lift
-`estimate_lift(input_df, distribution = "conversion_rate", baseline_option = "A")`
 
-`estimate_lift(input_df, distribution = "conversion_rate", baseline_option = "A", metric = "absolute")`
+The `metric` argument defaults to `lift` which produces a percent lift vs the baseline. Sometimes we may want to understand this lift in absolute terms (especially when samples from the posteriors could be negative, such as Contribution Margin (CM).)
+
+```{r}
+estimate_lift_vs_baseline(input_df, distribution = "conversion_rate", wrt_option = "A")
+```
+
+```{r}
+estimate_lift_vs_baseline(input_df, distribution = "conversion_rate", wrt_option = "A", metric = "absolute")
+```
 
 ### Win Probability vs. Baseline
-`estimate_win_prob_vs_baseline(input_df, distribution = "conversion_rate", baseline_option = "A")`
 
-### Estimate All Metrics
-`estimate_all_metrics(input_df)`
+This function is used to compare an individual option to the best option as opposed to the win probability of each option overall.
+
+```{r}
+estimate_win_prob_vs_baseline(input_df, distribution = "conversion_rate", wrt_option = "A")
+```
 
 ### Sample From the Posterior
-`sample_from_posterior(input_df, distribution = "conversion_rate)`
+
+Samples can be directly collected from the posterior with the following function.
+
+```{r}
+sample_from_posterior(input_df, distribution = "conversion_rate")
+```
+
+## Alternate Distribution Type (Rev Per Session)
+```{r}
+(input_df_rps <- tibble::tibble(
+   option_name = c("A", "B", "C"),
+   sum_sessions = c(1000, 1000, 1000),
+   sum_conversions = c(100, 120, 110),
+   sum_revenue = c(900, 1200, 1150)
+))
+
+estimate_all_values(input_df_rps, distribution = "rev_per_session", wrt_option_lift = "A")
+```
+
+
 
 ## Valid Posteriors
+
+You may want to pass alternate priors to a distribution. 
+Only do this if you are making an informed decision.
+
+```
 Beta - alpha0, beta0
 Gamma - k0, theta0 (k01, theta01 if alternate Gamma priors are required)
 Dirichlet - alpha_00 (none), alpha_01 (first conversion type), alpha_02 (alternate conversion type)
+```
+
+```{r}
+# You can also pass priors for just the Beta distribution and not the Gamma distribution.
+new_priors <- list(alpha0 = 2, beta0 = 10, k0 = 3, theta0 = 10000)
+estimate_all_values(input_df_rps, distribution = "rev_per_session", wrt_option_lift = "A", priors = new_priors)
+```
+
+## Looping Over All Distributions
+
+You may want to evaluate the results of a test in multiple different distributions.
+
+```{r}
+(input_df_all <- tibble::tibble(
+   option_name = c("A", "B", "C"),
+   sum_impressions = c(10000, 9000, 11000),
+   sum_sessions = c(1000, 1000, 1000),
+   sum_conversions = c(100, 120, 110),
+   sum_revenue = c(900, 1200, 1150),
+   sum_cost = c(10, 50, 30),
+   sum_conversions_2 = c(10, 8, 20),
+   sum_revenue_2 = c(10, 16, 15)
+) %>% 
+  dplyr::mutate(sum_clicks = sum_sessions)) # Clicks are the same as Sessions
+
+distributions <- c("conversion_rate", "response_rate", "ctr", "rev_per_session", "multi_rev_per_session", "cpa", "total_cm", "cm_per_click", "cpc")
+
+# Purrr map allows us to apply a function to each element of a list. (Similar to a for loop)
+purrr::map(distributions,
+           ~ estimate_all_values(input_df_all,
+                                 distribution = .x,
+                                 wrt_option_lift = "A",
+                                 metric = "absolute")
+)
+```
+

@@ -1,5 +1,7 @@
 #' Estimate Value Remaining
 #'
+#' Estimates value remaining or loss (in terms of percent lift, absolute, or relative).
+#'
 #' @param input_df Dataframe containing option_name (str) and various other columns
 #'     depending on the distribution type. See vignette for more details.
 #' @param distribution String of the distribution name
@@ -14,7 +16,6 @@
 #'
 #' @return numeric value remaining at the specified threshold
 #' @export
-#'
 estimate_value_remaining <- function(input_df, distribution, priors = list(),
                                      wrt_option = NULL, metric = "lift", threshold = 0.95){
   validate_input_df(input_df, distribution)

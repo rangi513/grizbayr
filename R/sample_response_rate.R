@@ -16,7 +16,7 @@
 #' @return input_df with 2 new nested columns `beta_params` and `samples`
 #'
 sample_response_rate <- function(input_df, priors, n_samples = 5e4){
-  renamed_input_df <- dplyr::rename(input_df, sum_clicks = sum_sessions)
+  renamed_input_df <- dplyr::mutate(input_df, sum_clicks = sum_sessions)
   sample_conv_rate(renamed_input_df, priors, n_samples)
 }
 

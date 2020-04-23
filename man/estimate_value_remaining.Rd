@@ -29,5 +29,5 @@ Defaults to 95%. (optional)}
 numeric value remaining at the specified threshold
 }
 \description{
-Estimate Value Remaining
+Estimates value remaining or loss (in terms of percent lift, absolute, or relative).
 }

@@ -12,6 +12,14 @@ Uses simple Bayesian conjugate prior update rules to calculate the following met
 
 This allows a user to implement Bayesian Inference methods when analyzing the results of a split test or Bandit experiment.
 
+## Examples
+
+See the `start` vignette for examples to get started.
+```
+library(grizbayr)
+vignette("start")
+```
+
 ### Marketing objectives supported:
 
  - Conversion Rate
