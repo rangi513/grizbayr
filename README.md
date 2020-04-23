@@ -14,11 +14,7 @@ This allows a user to implement Bayesian Inference methods when analyzing the re
 
 ## Examples
 
-See the `start` vignette for examples to get started.
-```
-library(grizbayr)
-vignette("start")
-```
+See the `intro` vignette for examples to get started.
 
 ### Marketing objectives supported:
 
