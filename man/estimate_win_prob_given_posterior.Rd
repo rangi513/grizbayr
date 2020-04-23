@@ -4,8 +4,7 @@
 \alias{estimate_win_prob_given_posterior}
 \title{Estimate Win Probability Given Posterior Distribution}
 \usage{
-estimate_win_prob_given_posterior(posterior_samples,
-  winner_is_max = TRUE)
+estimate_win_prob_given_posterior(posterior_samples, winner_is_max = TRUE)
 }
 \arguments{
 \item{posterior_samples}{Tibble of data in long form with 2 columns

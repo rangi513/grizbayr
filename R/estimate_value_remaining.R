@@ -12,7 +12,7 @@
 #'   lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
 #'   relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option
 #' @param threshold The confidence interval specifying what the "worst case scenario should be.
-#'     Defaults to 95%. (optional)
+#'     Defaults to 95\%. (optional)
 #'
 #' @return numeric value remaining at the specified threshold
 #' @export

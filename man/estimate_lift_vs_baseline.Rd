@@ -4,8 +4,14 @@
 \alias{estimate_lift_vs_baseline}
 \title{Estimate Lift vs Baseline}
 \usage{
-estimate_lift_vs_baseline(input_df, distribution, priors = list(),
-  wrt_option, metric = "lift", threshold = 0.7)
+estimate_lift_vs_baseline(
+  input_df,
+  distribution,
+  priors = list(),
+  wrt_option,
+  metric = "lift",
+  threshold = 0.7
+)
 }
 \arguments{
 \item{input_df}{Dataframe containing option_name (str) and various other columns
@@ -23,7 +29,7 @@ lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
 relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option}
 
 \item{threshold}{Lift percentage threshold between 0 and 1. (0.7
-threshold is "at least 70% lift"). Defaults to 0.7.}
+threshold is "at least 70\% lift"). Defaults to 0.7.}
 }
 \value{
 numeric value remaining at the specified threshold

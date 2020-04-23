@@ -4,8 +4,11 @@
 \alias{estimate_win_prob_vs_baseline_given_posterior}
 \title{Estimate Win Probability vs. Baseline Given Posterior}
 \usage{
-estimate_win_prob_vs_baseline_given_posterior(posterior_samples,
-  distribution, wrt_option)
+estimate_win_prob_vs_baseline_given_posterior(
+  posterior_samples,
+  distribution,
+  wrt_option
+)
 }
 \arguments{
 \item{posterior_samples}{Tibble returned from sample_from_posterior with 3 columns

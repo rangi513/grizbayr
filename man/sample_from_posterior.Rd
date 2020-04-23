@@ -4,8 +4,12 @@
 \alias{sample_from_posterior}
 \title{Sample From Posterior}
 \usage{
-sample_from_posterior(input_df, distribution, priors = list(),
-  n_samples = 50000)
+sample_from_posterior(
+  input_df,
+  distribution,
+  priors = list(),
+  n_samples = 50000
+)
 }
 \arguments{
 \item{input_df}{Dataframe containing option_name (str) and various other columns

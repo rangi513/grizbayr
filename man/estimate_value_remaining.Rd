@@ -4,8 +4,14 @@
 \alias{estimate_value_remaining}
 \title{Estimate Value Remaining}
 \usage{
-estimate_value_remaining(input_df, distribution, priors = list(),
-  wrt_option = NULL, metric = "lift", threshold = 0.95)
+estimate_value_remaining(
+  input_df,
+  distribution,
+  priors = list(),
+  wrt_option = NULL,
+  metric = "lift",
+  threshold = 0.95
+)
 }
 \arguments{
 \item{input_df}{Dataframe containing option_name (str) and various other columns
@@ -23,7 +29,7 @@ lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
 relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option}
 
 \item{threshold}{The confidence interval specifying what the "worst case scenario should be.
-Defaults to 95%. (optional)}
+Defaults to 95\%. (optional)}
 }
 \value{
 numeric value remaining at the specified threshold

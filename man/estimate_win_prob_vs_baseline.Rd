@@ -4,8 +4,12 @@
 \alias{estimate_win_prob_vs_baseline}
 \title{Estimate Win Probability vs. Baseline}
 \usage{
-estimate_win_prob_vs_baseline(input_df, distribution, priors = list(),
-  wrt_option)
+estimate_win_prob_vs_baseline(
+  input_df,
+  distribution,
+  priors = list(),
+  wrt_option
+)
 }
 \arguments{
 \item{input_df}{Dataframe containing option_name (str) and various other columns

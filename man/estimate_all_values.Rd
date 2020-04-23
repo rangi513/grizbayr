@@ -4,9 +4,16 @@
 \alias{estimate_all_values}
 \title{Estimate All Values}
 \usage{
-estimate_all_values(input_df, distribution, wrt_option_lift,
-  priors = list(), wrt_option_vr = NULL, loss_threshold = 0.95,
-  lift_threshold = 0.7, metric = "lift")
+estimate_all_values(
+  input_df,
+  distribution,
+  wrt_option_lift,
+  priors = list(),
+  wrt_option_vr = NULL,
+  loss_threshold = 0.95,
+  lift_threshold = 0.7,
+  metric = "lift"
+)
 }
 \arguments{
 \item{input_df}{Dataframe containing option_name (str) and various other columns
@@ -23,10 +30,10 @@ with respect to (wrt). Required.}
 is calculated. If NULL the best option will be used. (optional)}
 
 \item{loss_threshold}{The confidence interval specifying what the "worst case scenario" should be.
-Defaults to 95%. (optional)}
+Defaults to 95\%. (optional)}
 
 \item{lift_threshold}{The confidence interval specifying how likely the lift is to be true.
-Defaults to 70%. (optional)}
+Defaults to 70\%. (optional)}
 
 \item{metric}{string the type of loss.
 absolute will be the difference, on the outcome scale. 0 when best = wrt_option

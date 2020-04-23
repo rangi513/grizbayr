@@ -16,9 +16,9 @@
 #' @param wrt_option_vr String: the option against which loss (value remaining)
 #'   is calculated. If NULL the best option will be used. (optional)
 #' @param loss_threshold The confidence interval specifying what the "worst case scenario" should be.
-#'     Defaults to 95%. (optional)
+#'     Defaults to 95\%. (optional)
 #' @param lift_threshold The confidence interval specifying how likely the lift is to be true.
-#'     Defaults to 70%. (optional)
+#'     Defaults to 70\%. (optional)
 #' @param metric string the type of loss.
 #'   absolute will be the difference, on the outcome scale. 0 when best = wrt_option
 #'   lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option

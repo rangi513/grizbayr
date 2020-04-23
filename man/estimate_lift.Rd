@@ -4,8 +4,12 @@
 \alias{estimate_lift}
 \title{Estimate Lift Distribution}
 \usage{
-estimate_lift(posterior_samples, distribution, wrt_option,
-  metric = c("absolute", "lift", "relative_risk"))
+estimate_lift(
+  posterior_samples,
+  distribution,
+  wrt_option,
+  metric = c("absolute", "lift", "relative_risk")
+)
 }
 \arguments{
 \item{posterior_samples}{Tibble returned from sample_from_posterior with 3 columns

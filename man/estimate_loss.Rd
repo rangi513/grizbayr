@@ -4,8 +4,12 @@
 \alias{estimate_loss}
 \title{Estimate Loss}
 \usage{
-estimate_loss(posterior_samples, distribution, wrt_option = NULL,
-  metric = c("absolute", "lift", "relative_risk"))
+estimate_loss(
+  posterior_samples,
+  distribution,
+  wrt_option = NULL,
+  metric = c("absolute", "lift", "relative_risk")
+)
 }
 \arguments{
 \item{posterior_samples}{Tibble returned from sample_from_posterior with 3 columns
