@@ -37,3 +37,13 @@ numeric value remaining at the specified threshold
 \description{
 Estimates value remaining or loss (in terms of percent lift, absolute, or relative).
 }
+\examples{
+input_df <- tibble::tibble(option_name = c("A", "B", "C"),
+    sum_clicks = c(1000, 1000, 1000),
+    sum_conversions = c(100, 120, 110))
+estimate_value_remaining(input_df, distribution = "conversion_rate")
+estimate_value_remaining(input_df, distribution = "conversion_rate", threshold = 0.99)
+estimate_value_remaining(input_df, distribution = "conversion_rate", metric = "absolute")
+estimate_value_remaining(input_df, distribution = "conversion_rate", wrt_option = "A", metric = "absolute")
+
+}

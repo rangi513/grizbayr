@@ -15,6 +15,12 @@
 #' @return numeric value remaining at the specified threshold
 #' @export
 #'
+#' @examples
+#' input_df <- tibble::tibble(option_name = c("A", "B", "C"),
+#'     sum_clicks = c(1000, 1000, 1000),
+#'     sum_conversions = c(100, 120, 110))
+#' estimate_lift_vs_baseline(input_df, distribution = "conversion_rate", wrt_option_lift = "A")
+#'
 estimate_lift_vs_baseline <- function(input_df, distribution, priors = list(),
                                       wrt_option, metric = "lift", threshold = 0.7){
   validate_input_df(input_df, distribution)

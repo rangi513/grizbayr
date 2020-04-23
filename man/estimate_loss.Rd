@@ -28,3 +28,9 @@ numeric, the loss distribution
 \description{
 Estimate Loss
 }
+\examples{
+# Requires posterior_samples dataframe. See `sample_from_posterior()`
+# for an example.
+estimate_loss(posterior_samples = posterior_samples, distribution = "conversion_rate")
+
+}

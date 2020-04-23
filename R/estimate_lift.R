@@ -1,5 +1,7 @@
 #' Estimate Lift Distribution
 #'
+#' Estimates lift distribution vector from posterior samples.
+#'
 #' @param posterior_samples Tibble returned from sample_from_posterior with 3 columns
 #'   `option_name`, `samples`, and `sample_id`.
 #' @param distribution String of the distribution name
@@ -11,6 +13,14 @@
 #'
 #' @return numeric, the lift distribution
 #' @export
+#'
+#' @examples
+#' # Requires posterior_samples dataframe. See `sample_from_posterior()`
+#' # for an example.
+#' estimate_lift(posterior_samples = posterior_samples,
+#'               distribution = "conversion_rate",
+#'               wrt_option = "A",
+#'               metric = "lift")
 #'
 estimate_lift <- function(posterior_samples, distribution, wrt_option, metric = c("absolute", "lift", "relative_risk")){
   metric <- match.arg(metric)
