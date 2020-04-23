@@ -16,7 +16,7 @@ This allows a user to implement Bayesian Inference methods when analyzing the re
 
 See the `intro` vignette for examples to get started.
 
-### Marketing objectives supported:
+## Marketing objectives supported:
 
  - Conversion Rate
  - Response Rate
@@ -30,6 +30,9 @@ See the `intro` vignette for examples to get started.
 
 
 ## Contributing
+
+### New Posterior Distributions
+
 To add a new posterior distribution you must complete the following:
 
 1. Create a new function called `sample_...(input_df, priors, n_samples)`. Use the internal helper functions update_gamma, update_beta, etc. included in this package or you can create a new one.
@@ -42,6 +45,12 @@ To add a new posterior distribution you must complete the following:
   
 1. Create a PR for review.  
 
+### New Features Ideas (TODO)
+
+- High Density Credible Intervals with each option
+- Conjugate Prior Update Rules vignette deriving each marketing objective
+
+---
 
 #### Package Name
 
