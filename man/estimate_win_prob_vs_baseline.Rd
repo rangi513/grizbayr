@@ -28,3 +28,12 @@ Tibble of each option_name and the win probability expressed as a percentage and
 Calculates the win probability of the best option compared to a single other option
 given an input_df
 }
+\examples{
+input_df <- tibble::tibble(
+    option_name = c("A", "B", "C"),
+    sum_clicks = c(1000, 1000, 1000),
+    sum_conversions = c(100, 120, 110)
+)
+estimate_win_prob_vs_baseline(input_df = input_df, distribution = "conversion_rate", wrt_option = "B")
+
+}

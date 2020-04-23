@@ -25,3 +25,9 @@ Tibble of each option_name and the win probability expressed as a percentage and
 Calculates the win probability of the best option compared to a single other option
 given a posterior distribution.
 }
+\examples{
+# Requires posterior_samples dataframe. See `sample_from_posterior()`
+# for an example.
+estimate_win_prob_vs_baseline_given_posterior(posterior_samples = posterior_samples, "conversion_rate", "A")
+
+}

@@ -12,6 +12,14 @@
 #' @return Tibble of each option_name and the win probability expressed as a percentage and a decimal `raw`
 #' @export
 #'
+#' @examples
+#' input_df <- tibble::tibble(
+#'     option_name = c("A", "B", "C"),
+#'     sum_clicks = c(1000, 1000, 1000),
+#'     sum_conversions = c(100, 120, 110)
+#' )
+#' estimate_win_prob_vs_baseline(input_df = input_df, distribution = "conversion_rate", wrt_option = "B")
+#'
 estimate_win_prob_vs_baseline <- function(input_df, distribution, priors = list(), wrt_option){
   validate_input_df(input_df, distribution)
 

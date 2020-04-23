@@ -11,6 +11,11 @@
 #' @return Tibble of each option_name and the win probability expressed as a percentage and a decimal `raw`
 #' @export
 #'
+#' @examples
+#' # Requires posterior_samples dataframe. See `sample_from_posterior()`
+#' # for an example.
+#' estimate_win_prob_vs_baseline_given_posterior(posterior_samples = posterior_samples, "conversion_rate", "A")
+#'
 estimate_win_prob_vs_baseline_given_posterior <- function(posterior_samples, distribution, wrt_option){
   validate_wrt_option(wrt_option, posterior_samples)
   best_option <- find_best_option(posterior_samples, distribution)
