@@ -9,10 +9,21 @@ estimate_win_prob_given_posterior(posterior_samples, winner_is_max = TRUE)
 \arguments{
 \item{posterior_samples}{Tibble of data in long form with 2 columns
 `option_name` and `samples`}
+
+\item{winner_is_max}{Boolean. This should almost always be TRUE. If a larger number is better
+then this should be TRUE. This should be FALSE for metrics such as CPA or CPC where a higher cost
+is not necessarily better.}
 }
 \value{
 Tibble of each option_name and the win probability expressed as a percentage and a decimal `raw`
 }
 \description{
 Estimate Win Probability Given Posterior Distribution
+}
+\examples{
+# Requires posterior_samples dataframe. See `sample_from_posterior()`
+# for an example.
+estimate_win_prob_given_posterior(posterior_samples = posterior_samples)
+estimate_win_prob_given_posterior(posterior_samples = posterior_samples, winner_is_max = TRUE)
+
 }
