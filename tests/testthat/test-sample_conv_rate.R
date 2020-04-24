@@ -8,8 +8,7 @@ test_that("sample_conv_rate returns correct shape", {
   )
   n_options <- length(unique(input_df$option_name))
   n_samples <- 150
-  expected_col_names <- c("option_name", "sum_clicks", "sum_conversions",
-                          "beta_params", "samples")
+  expected_col_names <- c(colnames(input_df), "beta_params", "samples")
   output <- sample_conv_rate(input_df, priors = list(), n_samples = n_samples)
   expect_true(is.data.frame(output))
   expect_true(all(c("option_name", "samples") %in% colnames(output)))

@@ -5,6 +5,25 @@
 #'         and \eqn{\beta} parameters and \eqn{k} and \eqn{\theta} parameters)
 #'     `samples` in each row should be a tibble of length `n_samples`
 #'
+#'
+#' See update_rules vignette for a mathematical representation.
+#' This is a combination of a Beta-Bernoulli update and a Gamma-Exponential update.
+#'
+#' \deqn{conversion_i ~ Bernoulli(\phi)}
+#' \deqn{cpc_i ~ Exponential(\lambda)}
+#' \deqn{\phi ~ Beta(\alpha, \beta)}
+#' \deqn{\lambda ~ Gamma(k, \theta)}
+#'
+#' \deqn{cpa_i ~ 1/ (Bernoulli(\phi) * Exponential(\lambda))}
+#' \deqn{averageCPA ~ 1/(\phi\lambda)}
+#'
+#' Conversion Rate is sampled from a Beta distribution with a Binomial likelihood
+#' of an individual converting.
+#'
+#' Average CPC is sampled from a Gamma distribution with an Exponential likelihood
+#' of an individual cost.
+#'
+#'
 #' @param input_df Dataframe containing option_name (str), sum_conversions (dbl), sum_cost (dbl),
 #'     and sum_clicks (dbl).
 #' @param priors Optional list of priors {alpha0, beta0} for Beta and {k0, theta0} for Gamma.

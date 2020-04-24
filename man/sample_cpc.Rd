@@ -23,3 +23,10 @@ Adds 2 new nested columns to the input_df: `gamma_params` and `samples`
         and \eqn{\theta} parameters)
     `samples` in each row should be a tibble of length `n_samples`
 }
+\details{
+See update_rules vignette for a mathematical representation.
+\deqn{cpc_i ~ Exponential(\lambda)}
+\deqn{\lambda ~ Gamma(\k, \theta)}
+Average CPC is sampled from a Gamma distribution with an Exponential likelihood
+of an individual cost.
+}

@@ -5,6 +5,12 @@
 #'         and \eqn{\theta} parameters)
 #'     `samples` in each row should be a tibble of length `n_samples`
 #'
+#' See update_rules vignette for a mathematical representation.
+#' \deqn{cpc_i ~ Exponential(\lambda)}
+#' \deqn{\lambda ~ Gamma(\k, \theta)}
+#' Average CPC is sampled from a Gamma distribution with an Exponential likelihood
+#' of an individual cost.
+#'
 #' @param input_df Dataframe containing option_name (str), sum_clicks (dbl), sum_cost (dbl).
 #' @param priors Optional list of priors {k0, theta0} for Gamma.
 #'     Default \eqn{Gamma(1, 250)} will be use otherwise.

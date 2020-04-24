@@ -10,7 +10,7 @@ test_that("sample_cm_per_click returns correct shape", {
   )
   n_options <- length(unique(input_df_cm_per_click$option_name))
   n_samples <- 150
-  expected_col_names <- c("option_name", "sum_clicks", "sum_conversions", "sum_revenue", "sum_cost",
+  expected_col_names <- c(colnames(input_df_cm_per_click),
                           "beta_params", "gamma_params_rev", "gamma_params_cost", "samples")
   output <- sample_cm_per_click(input_df_cm_per_click, priors = list(), n_samples = n_samples)
   expect_true(is.data.frame(output))

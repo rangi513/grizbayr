@@ -24,3 +24,25 @@ Adds 3 new nested columns to the input_df: `beta_params`, `gamma_params`, and `s
         and \eqn{\beta} parameters and \eqn{k} and \eqn{\theta} parameters)
     `samples` in each row should be a tibble of length `n_samples`
 }
+\details{
+See update_rules vignette for a mathematical representation.
+
+\deqn{RevPerSession = RevPerOrder * OrdersPerClick}
+This is a combination of a Beta-Bernoulli update and a Gamma-Exponential update.
+
+\deqn{conversion_i ~ Bernoulli(\phi)}
+\deqn{revenue_i ~ Exponential(\lambda)}
+\deqn{\phi ~ Beta(\alpha, \beta)}
+\deqn{\lambda ~ Gamma(k, \theta)}
+
+\deqn{revenue_i ~ Bernoulli(\phi) * Exponential(\lambda)^-1)}
+\deqn{Rev Per Session ~ \phi / \lambda}
+
+Conversion Rate is sampled from a Beta distribution with a Binomial likelihood
+of an individual converting.
+
+Average Rev Per Order is sampled from a Gamma distribution with an Exponential likelihood
+of Revenue from an individual order.
+This function makes sense to use if there is a distribution of possible revenue values
+that can be produced from a single order or conversion.
+}

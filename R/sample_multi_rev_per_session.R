@@ -2,7 +2,16 @@
 #'
 #' Adds 5 new nested columns to the input_df: `dirichlet_params`,
 #'     `gamma_params_A`, `gamma_params_B`, and `samples`.
-#'     `samples` in each row should be a tibble of length `n_samples`
+#'     `samples` in each row should be a tibble of length `n_samples`.
+#'     This samples from multiple revenue per session distributions at once.
+#'
+#'
+#' See update_rules vignette for a mathematical representation.
+#'
+#' \deqn{conversion_i ~ MultiNomial(\phi_1, \phi_2, ..., \phi_k)}
+#' \deqn{\phi_k ~ Dirichlet(\alpha, \beta)}
+#' Conversion Rate is sampled from a Dirichlet distribution with a Multinomial likelihood
+#' of an individual converting.
 #'
 #' @param input_df Dataframe containing option_name (str), sum_conversions (dbl),
 #'     sum_sessions (dbl), sum_revenue (dbl), sum_conversion_2 (dbl), sum_sessions_2 (dbl),

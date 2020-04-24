@@ -24,3 +24,21 @@ Adds 3 new nested columns to the input_df: `beta_params`, `gamma_params`, and `s
         and \eqn{\beta} parameters and \eqn{k} and \eqn{\theta} parameters)
     `samples` in each row should be a tibble of length `n_samples`
 }
+\details{
+See update_rules vignette for a mathematical representation.
+This is a combination of a Beta-Bernoulli update and a Gamma-Exponential update.
+
+\deqn{conversion_i ~ Bernoulli(\phi)}
+\deqn{cpc_i ~ Exponential(\lambda)}
+\deqn{\phi ~ Beta(\alpha, \beta)}
+\deqn{\lambda ~ Gamma(k, \theta)}
+
+\deqn{cpa_i ~ 1/ (Bernoulli(\phi) * Exponential(\lambda))}
+\deqn{averageCPA ~ 1/(\phi\lambda)}
+
+Conversion Rate is sampled from a Beta distribution with a Binomial likelihood
+of an individual converting.
+
+Average CPC is sampled from a Gamma distribution with an Exponential likelihood
+of an individual cost.
+}
