@@ -22,6 +22,7 @@
 #'    sum_conversions = c(100, 120)
 #' )
 #' sample_from_posterior(input_df, "conversion_rate")
+#' sample_from_posterior(input_df, "rev_per_session")
 #'
 sample_from_posterior <- function(input_df, distribution, priors = list(), n_samples = 5e4){
   samples_tibble <- switch(distribution,
@@ -43,9 +44,8 @@ sample_from_posterior <- function(input_df, distribution, priors = list(), n_sam
   # Clean tibble into expected 2 dimensional output with added sample_id
   samples_tibble %>%
      dplyr::mutate(samples = purrr::map(.x = samples,
-                                        ~ dplyr::mutate(
-                                           .data = tibble::tibble(samples = .x),
-                                           sample_id = dplyr::row_number())
+                                        ~ tibble::tibble(samples = .x) %>%
+                                           dplyr::mutate(sample_id = dplyr::row_number())
                                         )
                    ) %>%
      dplyr::select(option_name, samples) %>%

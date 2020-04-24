@@ -18,3 +18,8 @@ wp_raw table with new rows if opption names were missing.
 \description{
 When win probability is calculated
 }
+\examples{
+post_sample_example <- tibble::tibble(option_name = c("A", "B", "C"))
+wp_raw <- tibble::tibble(option_name = c("B", "C"), win_prob_raw = c(0.4, 0.6))
+impute_missing_options(posterior_samples = post_sample_example, wp_raw = wp_raw)
+}

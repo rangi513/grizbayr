@@ -25,7 +25,7 @@ Dirichlet-Multinomial conjugate prior update rule.
 }
 \details{
 TODO: This function currently only works in 3 dimensions.
-Should be extended into N dimensions in the future.
+Should be extended into N dimensions in the future. Can use ... notation.
 }
 \examples{
 update_dirichlet(alpha_0 = 20, alpha_1 = 5, alpha_2 = 2)

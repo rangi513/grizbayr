@@ -26,3 +26,7 @@ Adds 3 new nested columns to the input_df: `beta_params`, `gamma_params_rev`, `g
         and \eqn{\beta} parameters and \eqn{k} and \eqn{\theta} parameters)
     `samples` in each row should be a tibble of length `n_samples`
 }
+\details{
+See update_rules vignette for a mathematical representation.
+\deqn{CMPerClick = ConversionsPerClick * RevPerConversion - CostPerClick}
+}

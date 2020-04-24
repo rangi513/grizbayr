@@ -18,3 +18,7 @@ n x length(alphas) named tibble representing the probability of observing each o
 Randomly samples a vector of length n from a dirichlet distribution parameterized by a vector of alphas
 PDF of Gamma with scale = 1 : f(x)= 1/(Gamma(a)) x^(a-1) e^-(x)
 }
+\examples{
+rdirichlet(100, list(a = 20, b = 15, c = 60))
+
+}

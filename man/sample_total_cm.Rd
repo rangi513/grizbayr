@@ -34,4 +34,6 @@ in the number of impressions on either side.
 }
 \details{
 See update_rules vignette for a mathematical representation.
+
+\deqn{TotalCM = Impressions * ExpectedCTR * (RevPerOrder * OrdersPerClick - ExpectedCostPerClick)}
 }

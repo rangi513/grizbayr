@@ -48,7 +48,7 @@ To add a new posterior distribution you must complete the following:
 ### New Features Ideas (TODO)
 
 - High Density Credible Intervals with each option
-- Conjugate Prior Update Rules vignette deriving each marketing objective
+- Conjugate Prior Update Rules vignette deriving each marketing objective `update_rules`
 
 ---
 

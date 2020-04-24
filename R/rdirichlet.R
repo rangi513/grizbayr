@@ -11,6 +11,9 @@
 #'
 #' @return n x length(alphas) named tibble representing the probability of observing each outcome
 #'
+#' @examples
+#' rdirichlet(100, list(a = 20, b = 15, c = 60))
+#'
 rdirichlet <- function(n, alphas_list) {
   alphas <- unlist(alphas_list)
   dimensions <- length(alphas)

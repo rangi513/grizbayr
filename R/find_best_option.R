@@ -11,6 +11,9 @@
 #' @return String: the best option name
 #' @export
 #'
+#' @examples
+#' # Requires posterior distribution
+#' find_best_option(posterior_samples = posterior_samples, distribution = "conversion_rate")
 find_best_option <- function(posterior_samples, distribution){
   estimate_win_prob_given_posterior(posterior_samples = posterior_samples,
                                     winner_is_max = is_winner_max(distribution)) %>%

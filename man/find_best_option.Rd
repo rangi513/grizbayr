@@ -20,3 +20,7 @@ Samples from posterior, calculates win probability, and selects the best option.
 Note: this can be inefficient if you already have the win probability dataframe.
 Only use this if that has not already been calculated.
 }
+\examples{
+# Requires posterior distribution
+find_best_option(posterior_samples = posterior_samples, distribution = "conversion_rate")
+}

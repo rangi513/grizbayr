@@ -5,6 +5,12 @@
 #'         and \eqn{\beta} parameters)
 #'     `samples` in each row should be a tibble of length `n_samples`
 #'
+#' See update_rules vignette for a mathematical representation.
+#' \deqn{conversion_i ~ Bernoulli(\phi)}
+#' \deqn{\phi ~ Beta(\alpha, \beta)}
+#' Conversion Rate is sampled from a Beta distribution with a Binomial likelihood
+#' of an individual converting.
+#'
 #' @param input_df Dataframe containing option_name (str), sum_conversions (dbl),
 #'     and sum_clicks (dbl).
 #' @param priors Optional list of priors alpha0 and beta0. Default \eqn{Beta(1,1)} will be use otherwise.

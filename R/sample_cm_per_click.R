@@ -5,6 +5,9 @@
 #'         and \eqn{\beta} parameters and \eqn{k} and \eqn{\theta} parameters)
 #'     `samples` in each row should be a tibble of length `n_samples`
 #'
+#' See update_rules vignette for a mathematical representation.
+#' \deqn{CMPerClick = ConversionsPerClick * RevPerConversion - CostPerClick}
+#'
 #' @param input_df Dataframe containing option_name (str), sum_conversions (dbl), sum_revenue (dbl),
 #'     and sum_clicks (dbl).
 #' @param priors Optional list of priors {alpha0, beta0} for Beta, {k0, theta0} for Gamma Inverse Revenue,

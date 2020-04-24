@@ -4,7 +4,7 @@
 #' Dirichlet-Multinomial conjugate prior update rule.
 #'
 #' TODO: This function currently only works in 3 dimensions.
-#' Should be extended into N dimensions in the future.
+#' Should be extended into N dimensions in the future. Can use ... notation.
 #'
 #' @param alpha_0 Double value for alpha_0 (count of failures). Must be 0 or greater.
 #' @param alpha_1 Double value for alpha_1 (count of successes side 1). Must be 0 or greater.

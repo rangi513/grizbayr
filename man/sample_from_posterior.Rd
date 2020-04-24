@@ -34,5 +34,6 @@ input_df <- tibble::tibble(
    sum_conversions = c(100, 120)
 )
 sample_from_posterior(input_df, "conversion_rate")
+sample_from_posterior(input_df, "rev_per_session")
 
 }

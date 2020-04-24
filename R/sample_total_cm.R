@@ -14,6 +14,8 @@
 #'
 #' See update_rules vignette for a mathematical representation.
 #'
+#' \deqn{TotalCM = Impressions * ExpectedCTR * (RevPerOrder * OrdersPerClick - ExpectedCostPerClick)}
+#'
 #'
 #' @param input_df Dataframe containing option_name (str), sum_conversions (dbl), sum_revenue (dbl),
 #'     and sum_clicks (dbl).
@@ -74,8 +76,7 @@ sample_total_cm <- function(input_df, priors, n_samples = 5e4){
                                            # Expected CTR samples Times Fixed Impressions
                                             ~ rbeta(n_samples,
                                                     shape1 = .x$alpha,
-                                                    shape2 = .x$beta) *
-                                             rep(sum_impressions, times = n_samples)
+                                                    shape2 = .x$beta) * sum_impressions
       ),
       samples = purrr::pmap(list(rev_per_click = rev_per_click_samples,
                                  cost_per_click = cost_per_click_samples,
