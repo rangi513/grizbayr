@@ -34,6 +34,7 @@
 #' @importFrom purrr pmap map2
 #' @importFrom dplyr mutate select %>%
 #' @importFrom stats rgamma rbeta
+#' @importFrom rlang .data
 #'
 #' @return input_df with 5 new nested columns `beta_params_conv`,
 #'     `beta_params_ctr`, `gamma_params_rev`,`gamma_params_cost`,
@@ -42,33 +43,33 @@
 sample_total_cm <- function(input_df, priors, n_samples = 5e4){
   input_df %>%
     dplyr::mutate(
-      beta_params_conv = purrr::map2(.x = sum_conversions,
-                                     .y = sum_clicks,
+      beta_params_conv = purrr::map2(.x = .data$sum_conversions,
+                                     .y = .data$sum_clicks,
                                      ~ update_beta(alpha = .x,
                                                    beta = .y - .x,
                                                    priors = priors)
       ),
-      beta_params_ctr = purrr::map2(.x = sum_clicks,
-                                    .y = sum_impressions,
+      beta_params_ctr = purrr::map2(.x = .data$sum_clicks,
+                                    .y = .data$sum_impressions,
                                     ~ update_beta(alpha = .x,
                                                   beta = .y - .x,
                                                   priors = priors)
       ),
-      gamma_params_rev = purrr::map2(.x = sum_conversions,
-                                     .y = sum_revenue,
+      gamma_params_rev = purrr::map2(.x = .data$sum_conversions,
+                                     .y = .data$sum_revenue,
                                      ~ update_gamma(k = .x,
                                                     theta = .y,
                                                     priors = priors)
       ),
-      gamma_params_cost = purrr::map2(.x = sum_clicks,
-                                      .y = sum_cost,
+      gamma_params_cost = purrr::map2(.x = .data$sum_clicks,
+                                      .y = .data$sum_cost,
                                       ~ update_gamma(k = .x,
                                                      theta = .y,
                                                      priors = priors,
                                                      alternate_priors = TRUE)
       ),
-      rev_per_click_samples = purrr::map2(.x = beta_params_conv,
-                                          .y = gamma_params_rev,
+      rev_per_click_samples = purrr::map2(.x = .data$beta_params_conv,
+                                          .y = .data$gamma_params_rev,
                                           ~ stats::rbeta(n_samples,
                                                          shape1 = .x$alpha,
                                                          shape2 = .x$beta) /
@@ -76,24 +77,28 @@ sample_total_cm <- function(input_df, priors, n_samples = 5e4){
                                                           shape = .y$k,
                                                           scale = .y$theta)
       ),
-      cost_per_click_samples = purrr::map(.x = gamma_params_cost,
+      cost_per_click_samples = purrr::map(.x = .data$gamma_params_cost,
                                           ~ stats::rgamma(n_samples,
                                                           shape = .x$k,
                                                           scale = .x$theta)
       ),
-      expected_clicks_samples = purrr::map(.x = beta_params_ctr,
+      expected_clicks_samples = purrr::map(.x = .data$beta_params_ctr,
                                            # Expected CTR samples Times Fixed Impressions
                                             ~ stats::rbeta(n_samples,
                                                            shape1 = .x$alpha,
                                                            shape2 = .x$beta) * sum_impressions
       ),
-      samples = purrr::pmap(list(rev_per_click = rev_per_click_samples,
-                                 cost_per_click = cost_per_click_samples,
-                                 expected_clicks = expected_clicks_samples),
+      samples = purrr::pmap(list(rev_per_click = .data$rev_per_click_samples,
+                                 cost_per_click = .data$cost_per_click_samples,
+                                 expected_clicks = .data$expected_clicks_samples),
                             ~ calculate_total_cm(...)
       )
     ) %>%
-    dplyr::select(-rev_per_click_samples, -cost_per_click_samples, -expected_clicks_samples)
+    dplyr::select(
+      -.data$rev_per_click_samples, 
+      -.data$cost_per_click_samples, 
+      -.data$expected_clicks_samples
+      )
 }
 
 

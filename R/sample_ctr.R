@@ -21,13 +21,14 @@
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom dplyr mutate
+#' @importFrom rlang .data
 #'
 #' @return input_df with 2 new nested columns `beta_params` and `samples`
 #'
 sample_ctr <- function(input_df, priors, n_samples = 5e4){
   renamed_input_df <- dplyr::mutate(input_df,
-                                    sum_conversions = sum_clicks,
-                                    sum_clicks = sum_impressions)
+                                    sum_conversions = .data$sum_clicks,
+                                    sum_clicks = .data$sum_impressions)
   sample_conv_rate(renamed_input_df, priors, n_samples)
 }
 

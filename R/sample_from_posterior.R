@@ -14,6 +14,7 @@
 #' @importFrom tidyr unnest
 #' @importFrom purrr map
 #' @importFrom tibble tibble
+#' @importFrom rlang .data
 #'
 #' @examples
 #' input_df <- tibble::tibble(
@@ -45,11 +46,11 @@ sample_from_posterior <- function(input_df, distribution, priors = list(), n_sam
   )
   # Clean tibble into expected 2 dimensional output with added sample_id
   samples_tibble %>%
-     dplyr::mutate(samples = purrr::map(.x = samples,
+     dplyr::mutate(samples = purrr::map(.x = .data$samples,
                                         ~ tibble::tibble(samples = .x) %>%
                                            dplyr::mutate(sample_id = dplyr::row_number())
                                         )
                    ) %>%
-     dplyr::select(option_name, samples) %>%
-     tidyr::unnest(cols = c(samples))
+     dplyr::select(.data$option_name, .data$samples) %>%
+     tidyr::unnest(cols = c(.data$samples))
 }

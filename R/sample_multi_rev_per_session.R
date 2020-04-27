@@ -23,6 +23,7 @@
 #' @importFrom purrr map map2 pmap
 #' @importFrom dplyr mutate select %>%
 #' @importFrom stats rgamma
+#' @importFrom rlang .data
 #'
 #' @return input_df with 4 new nested columns `dirichlet_params`,
 #'     `gamma_params_A`, `gamma_params_B`, and `samples`.
@@ -31,54 +32,54 @@
 sample_multi_rev_per_session <- function(input_df, priors, n_samples = 5e4){
   input_df %>%
     dplyr::mutate(
-      no_clicks = sum_sessions - sum_conversions - sum_conversions_2,
-      dirichlet_params = purrr::pmap(.l = list(alpha_0 = no_clicks,
-                                               alpha_1 = sum_conversions,
-                                               alpha_2 = sum_conversions_2),
+      no_clicks = .data$sum_sessions - .data$sum_conversions - .data$sum_conversions_2,
+      dirichlet_params = purrr::pmap(.l = list(alpha_0 = .data$no_clicks,
+                                               alpha_1 = .data$sum_conversions,
+                                               alpha_2 = .data$sum_conversions_2),
                                   ~ update_dirichlet(...,
                                                      priors = priors)
       ),
-      gamma_params_A = purrr::map2(.x = sum_conversions,
-                                   .y = sum_revenue,
+      gamma_params_A = purrr::map2(.x = .data$sum_conversions,
+                                   .y = .data$sum_revenue,
                                    ~ update_gamma(k = .x,
                                                   theta = .y,
                                                   priors = priors)
       ),
-      gamma_params_B = purrr::map2(.x = sum_conversions_2,
-                                   .y = sum_revenue_2,
+      gamma_params_B = purrr::map2(.x = .data$sum_conversions_2,
+                                   .y = .data$sum_revenue_2,
                                    ~ update_gamma(k = .x,
                                                   theta = .y,
                                                   priors = priors)
       ),
-      dirichlet_samples = purrr::map(dirichlet_params, ~ rdirichlet(n_samples,
-                                                                    alphas_list = .x)
+      dirichlet_samples = purrr::map(.data$dirichlet_params,
+                                     ~ rdirichlet(n_samples, alphas_list = .x)
       ),
-      gamma_samples_A = purrr::map(gamma_params_A,
+      gamma_samples_A = purrr::map(.data$gamma_params_A,
                                    ~ stats::rgamma(n_samples,
                                             shape = .x$k,
                                             scale = .x$theta)
       ),
-      gamma_samples_B = purrr::map(gamma_params_B,
+      gamma_samples_B = purrr::map(.data$gamma_params_B,
                                    ~ stats::rgamma(n_samples,
                                             shape = .x$k,
                                             scale = .x$theta)
       ),
-      samples = purrr::pmap(.l = list(conv_rates = dirichlet_samples,
-                                      inverse_rev_A = gamma_samples_A,
-                                      inverse_rev_B = gamma_samples_B),
+      samples = purrr::pmap(.l = list(conv_rates = .data$dirichlet_samples,
+                                      inverse_rev_A = .data$gamma_samples_A,
+                                      inverse_rev_B = .data$gamma_samples_B),
                             ~ calculate_multi_rev_per_session(...)
       )
     ) %>%
     select(
-      option_name,
-      sum_sessions,
-      sum_conversions,
-      sum_conversions_2,
-      sum_revenue,
-      sum_revenue_2,
-      dirichlet_params,
-      gamma_params_A,
-      gamma_params_B,
-      samples
+      .data$option_name,
+      .data$sum_sessions,
+      .data$sum_conversions,
+      .data$sum_conversions_2,
+      .data$sum_revenue,
+      .data$sum_revenue_2,
+      .data$dirichlet_params,
+      .data$gamma_params_A,
+      .data$gamma_params_B,
+      .data$samples
     )
 }

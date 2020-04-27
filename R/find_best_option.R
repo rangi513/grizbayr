@@ -11,7 +11,8 @@
 #' @return String: the best option name
 #'
 #' @importFrom dplyr filter
-#' @importFrom magrittr use_series %>%
+#' @importFrom magrittr extract2 %>%
+#' @importFrom rlang .data
 #' @export
 #'
 #' @examples
@@ -22,6 +23,6 @@
 find_best_option <- function(posterior_samples, distribution){
   estimate_win_prob_given_posterior(posterior_samples = posterior_samples,
                                     winner_is_max = is_winner_max(distribution)) %>%
-    dplyr::filter(win_prob_raw == max(win_prob_raw)) %>%
-    magrittr::use_series(option_name)
+    dplyr::filter(.data$win_prob_raw == max(.data$win_prob_raw)) %>%
+    magrittr::extract2("option_name")
 }

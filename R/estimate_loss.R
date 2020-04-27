@@ -11,9 +11,10 @@
 #'
 #' @return numeric, the loss distribution
 #'
-#' @importFrom dplyr filter %>%
-#' @importFrom magrittr use_series
+#' @importFrom dplyr filter select
+#' @importFrom magrittr use_series %>%
 #' @importFrom tidyr pivot_wider
+#' @importFrom rlang .data
 #'
 #' @export
 #'
@@ -35,8 +36,8 @@ estimate_loss <- function(posterior_samples, distribution, wrt_option = NULL, me
   }
 
   posterior_samples_wide <- posterior_samples %>%
-    tidyr::pivot_wider(names_from = option_name, values_from = samples) %>%
-    select(-sample_id)
+    tidyr::pivot_wider(names_from = .data$option_name, values_from = .data$samples) %>%
+    dplyr::select(-.data$sample_id)
 
   theta_star <- posterior_samples_wide[[wrt_option]]
 

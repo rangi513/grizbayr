@@ -10,6 +10,8 @@
 #'
 #' @return Tibble of each option_name and the win probability expressed as a percentage and a decimal `raw`
 #' @export
+#' @importFrom rlang .data
+#' @importFrom dplyr filter
 #'
 #' @examples
 #' # Requires posterior_samples dataframe. See `sample_from_posterior()`
@@ -26,7 +28,7 @@ estimate_win_prob_vs_baseline_given_posterior <- function(posterior_samples, dis
   best_option <- find_best_option(posterior_samples, distribution)
 
   posterior_samples_subset <- posterior_samples %>%
-    filter(option_name %in% c(wrt_option, best_option))
+    dplyr::filter(.data$option_name %in% c(wrt_option, best_option))
 
   estimate_win_prob_given_posterior(posterior_samples_subset, is_winner_max(distribution))
 }

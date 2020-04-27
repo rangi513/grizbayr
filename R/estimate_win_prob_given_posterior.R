@@ -25,14 +25,14 @@ estimate_win_prob_given_posterior <- function(posterior_samples, winner_is_max =
   validate_posterior_samples(posterior_samples)
 
   wp_raw <- posterior_samples %>%
-    dplyr::group_by(sample_id) %>%
-    dplyr::filter(samples == if(winner_is_max) max(samples) else min(samples)) %>%
-    dplyr::group_by(option_name, add = FALSE) %>%
-    dplyr::summarise(win_prob_raw = dplyr::n()/nrow(.))
+    dplyr::group_by(.data$sample_id) %>%
+    dplyr::filter(.data$samples == if(winner_is_max) max(.data$samples) else min(.data$samples)) %>%
+    dplyr::group_by(.data$option_name, add = FALSE) %>%
+    dplyr::summarise(win_prob_raw = dplyr::n()/nrow(posterior_samples))
 
   wp_raw_imputed <- impute_missing_options(posterior_samples, wp_raw)
 
   wp_raw_imputed %>%
-    dplyr::mutate(win_prob = paste0(win_prob_raw * 100, "%")) %>%
-    dplyr::arrange(dplyr::desc(win_prob_raw))
+    dplyr::mutate(win_prob = paste0(round(.data$win_prob_raw * 100, 2), "%")) %>%
+    dplyr::arrange(dplyr::desc(.data$win_prob_raw))
 }

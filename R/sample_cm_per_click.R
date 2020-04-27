@@ -23,6 +23,7 @@
 #' @importFrom purrr pmap map2
 #' @importFrom dplyr mutate %>%
 #' @importFrom stats rbeta rgamma
+#' @importFrom rlang .data
 #'
 #' @return input_df with 4 new nested columns `beta_params`, `gamma_params_rev`,
 #'     `gamma_params_cost`, and `samples`
@@ -30,28 +31,28 @@
 sample_cm_per_click <- function(input_df, priors, n_samples = 5e4){
   input_df %>%
     dplyr::mutate(
-      beta_params = purrr::map2(.x = sum_conversions,
-                                .y = sum_clicks,
+      beta_params = purrr::map2(.x = .data$sum_conversions,
+                                .y = .data$sum_clicks,
                                 ~ update_beta(alpha = .x,
                                               beta = .y - .x,
                                               priors = priors)
       ),
-      gamma_params_rev = purrr::map2(.x = sum_conversions,
-                                     .y = sum_revenue,
+      gamma_params_rev = purrr::map2(.x = .data$sum_conversions,
+                                     .y = .data$sum_revenue,
                                      ~ update_gamma(k = .x,
                                                     theta = .y,
                                                     priors = priors)
       ),
-      gamma_params_cost = purrr::map2(.x = sum_clicks,
-                                      .y = sum_cost,
+      gamma_params_cost = purrr::map2(.x = .data$sum_clicks,
+                                      .y = .data$sum_cost,
                                       ~ update_gamma(k = .x,
                                                      theta = .y,
                                                      priors = priors,
                                                      alternate_priors = TRUE)
       ),
-      samples = purrr::pmap(list(beta_params,
-                                 gamma_params_rev,
-                                 gamma_params_cost),
+      samples = purrr::pmap(list(.data$beta_params,
+                                 .data$gamma_params_rev,
+                                 .data$gamma_params_cost),
                             ~ ( # Rev Per Click
                               stats::rbeta(n_samples,
                                            shape1 = ..1$alpha,
