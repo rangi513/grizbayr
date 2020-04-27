@@ -1,8 +1,10 @@
 #' Sample CM Per Click
 #'
-#' Adds 3 new nested columns to the input_df: `beta_params`, `gamma_params_rev`, `gamma_params_cost`and `samples`
-#'     `beta_params` and `gamma_params_rev` in each row should be a tibble of length 2 (\eqn{\alpha}
-#'         and \eqn{\beta} parameters and \eqn{k} and \eqn{\theta} parameters)
+#' Adds 3 new nested columns to the input_df: `beta_params`,
+#'     `gamma_params_rev`, `gamma_params_cost`and `samples`
+#'     `beta_params` and `gamma_params_rev` in each row should be a
+#'      tibble of length 2 (\eqn{\alpha} and \eqn{\beta} parameters
+#'      and \eqn{k} and \eqn{\theta} parameters)
 #'     `samples` in each row should be a tibble of length `n_samples`
 #'
 #' See update_rules vignette for a mathematical representation.

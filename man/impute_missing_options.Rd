@@ -10,7 +10,8 @@ impute_missing_options(posterior_samples, wp_raw)
 \item{posterior_samples}{Tibble of data in long form with 2 columns
 `option_name` and `samples`}
 
-\item{wp_raw}{Tibble of win probabilities with the columns `option_name` and `win_prob_raw``}
+\item{wp_raw}{Tibble of win probabilities with the columns:
+`option_name` and `win_prob_raw``}
 }
 \value{
 wp_raw table with new rows if option names were missing.

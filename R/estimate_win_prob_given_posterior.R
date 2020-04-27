@@ -15,7 +15,10 @@
 #' # for an example.
 #' \dontrun{
 #' estimate_win_prob_given_posterior(posterior_samples = posterior_samples)
-#' estimate_win_prob_given_posterior(posterior_samples = posterior_samples, winner_is_max = TRUE)
+#' estimate_win_prob_given_posterior(
+#'     posterior_samples = posterior_samples,
+#'     winner_is_max = TRUE
+#' )
 #' }
 #'
 estimate_win_prob_given_posterior <- function(posterior_samples, winner_is_max = TRUE){
