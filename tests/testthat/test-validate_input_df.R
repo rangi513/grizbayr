@@ -34,8 +34,8 @@ test_that("validate_input_df fails when input is not a dataframe", {
   expect_error(validate_input_df(input_df, "conversion_rate"))
 })
 
-test_that("validate_input_df fails distribution name is invalid", {
-  input_df <- list(
+test_that("validate_input_df fails if distribution name is invalid", {
+  input_df <- tibble::tibble(
     option_name = c("A", "B"),
     sum_clicks = c(1000, 1000),
     sum_conversions = c(100, 120)
