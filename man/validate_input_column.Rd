@@ -11,6 +11,8 @@ validate_input_column(column_name, input_df, greater_than_zero = TRUE)
 
 \item{input_df}{Dataframe containing option_name (str) and various other columns
 depending on the distribution type. See vignette for more details.}
+
+\item{greater_than_zero}{Boolean: Do all values in the column have to be greater than zero?}
 }
 \value{
 None

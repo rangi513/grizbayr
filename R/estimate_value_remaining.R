@@ -16,15 +16,23 @@
 #'
 #' @return numeric value remaining at the specified threshold
 #' @export
+#' @importFrom stats quantile
 #'
 #' @examples
 #' input_df <- tibble::tibble(option_name = c("A", "B", "C"),
 #'     sum_clicks = c(1000, 1000, 1000),
 #'     sum_conversions = c(100, 120, 110))
 #' estimate_value_remaining(input_df, distribution = "conversion_rate")
-#' estimate_value_remaining(input_df, distribution = "conversion_rate", threshold = 0.99)
-#' estimate_value_remaining(input_df, distribution = "conversion_rate", metric = "absolute")
-#' estimate_value_remaining(input_df, distribution = "conversion_rate", wrt_option = "A", metric = "absolute")
+#' estimate_value_remaining(input_df,
+#'     distribution = "conversion_rate",
+#'     threshold = 0.99)
+#' estimate_value_remaining(input_df,
+#'     distribution = "conversion_rate",
+#'     metric = "absolute")
+#' estimate_value_remaining(input_df,
+#'     distribution = "conversion_rate",
+#'     wrt_option = "A",
+#'     metric = "absolute")
 #'
 estimate_value_remaining <- function(input_df, distribution, priors = list(),
                                      wrt_option = NULL, metric = "lift", threshold = 0.95){
@@ -38,5 +46,5 @@ estimate_value_remaining <- function(input_df, distribution, priors = list(),
                 distribution = distribution,
                 wrt_option = wrt_option,
                 metric = metric) %>%
-    quantile(probs = threshold)
+    stats::quantile(probs = threshold)
 }

@@ -48,7 +48,7 @@ A list with 4 named items: Win Probability, Value Remaining,
 Efficiently estimates all values at once so the posterior only need to be
 sampled one time. This function will return as a list win probability,
 value remaining, estimated percent lift with respect to the provided option,
-and the win probabilty of the best option vs the provided option.
+and the win probability of the best option vs the provided option.
 }
 \details{
 TODO: Add high density credible intervals to this output for each option.

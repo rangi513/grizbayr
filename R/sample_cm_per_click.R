@@ -17,6 +17,7 @@
 #'
 #' @importFrom purrr pmap map2
 #' @importFrom dplyr mutate %>%
+#' @importFrom stats rbeta rgamma
 #'
 #' @return input_df with 4 new nested columns `beta_params`, `gamma_params_rev`,
 #'     `gamma_params_cost`, and `samples`
@@ -47,16 +48,16 @@ sample_cm_per_click <- function(input_df, priors, n_samples = 5e4){
                                  gamma_params_rev,
                                  gamma_params_cost),
                             ~ ( # Rev Per Click
-                                rbeta(n_samples,
-                                      shape1 = ..1$alpha,
-                                      shape2 = ..1$beta) /
-                                rgamma(n_samples,
-                                       shape = ..2$k,
-                                       scale = ..2$theta) ) -
+                              stats::rbeta(n_samples,
+                                           shape1 = ..1$alpha,
+                                           shape2 = ..1$beta) /
+                                stats::rgamma(n_samples,
+                                              shape = ..2$k,
+                                              scale = ..2$theta) ) -
                               # Minus Variable Cost Per Click
-                              rgamma(n_samples,
-                                     shape = ..3$k,
-                                     scale = ..3$theta)
+                              stats::rgamma(n_samples,
+                                            shape = ..3$k,
+                                            scale = ..3$theta)
       )
     )
 }

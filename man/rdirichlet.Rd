@@ -9,7 +9,8 @@ rdirichlet(n, alphas_list)
 \arguments{
 \item{n}{integer, the number of samples}
 
-\item{alphas}{paramaters of the dirichlet, interpreted as the number of success of each outcome (integer vector)}
+\item{alphas_list}{Named List of Integers: paramaters of the dirichlet,
+interpreted as the number of success of each outcome}
 }
 \value{
 n x length(alphas) named tibble representing the probability of observing each outcome

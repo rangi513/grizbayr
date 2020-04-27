@@ -13,13 +13,5 @@ validate_data_values(data_values)
 None
 }
 \description{
-Validate Data Values
-}
-\examples{
-validate_data_values(data_values = list(successes = 22, failures = 100))
-## DONT RUN
-\donttest{
-validate_data_values(data_values = list(successes = 22, failures = -1))
-}
-
+Validates data values are all greater than 0.
 }

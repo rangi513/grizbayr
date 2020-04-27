@@ -41,6 +41,6 @@ Estimate Lift vs Baseline
 input_df <- tibble::tibble(option_name = c("A", "B", "C"),
     sum_clicks = c(1000, 1000, 1000),
     sum_conversions = c(100, 120, 110))
-estimate_lift_vs_baseline(input_df, distribution = "conversion_rate", wrt_option_lift = "A")
+estimate_lift_vs_baseline(input_df, distribution = "conversion_rate", wrt_option = "A")
 
 }

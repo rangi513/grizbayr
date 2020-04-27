@@ -8,13 +8,15 @@
 #'
 #' @return Tibble of each option_name and the win probability expressed as a percentage and a decimal `raw`
 #' @export
-#' @importFrom dplyr %>% group_by filter summarise mutate arrange
+#' @importFrom dplyr %>% group_by filter summarise mutate arrange desc
 #'
 #' @examples
 #' # Requires posterior_samples dataframe. See `sample_from_posterior()`
 #' # for an example.
+#' \dontrun{
 #' estimate_win_prob_given_posterior(posterior_samples = posterior_samples)
 #' estimate_win_prob_given_posterior(posterior_samples = posterior_samples, winner_is_max = TRUE)
+#' }
 #'
 estimate_win_prob_given_posterior <- function(posterior_samples, winner_is_max = TRUE){
   validate_posterior_samples(posterior_samples)
@@ -29,5 +31,5 @@ estimate_win_prob_given_posterior <- function(posterior_samples, winner_is_max =
 
   wp_raw_imputed %>%
     dplyr::mutate(win_prob = paste0(win_prob_raw * 100, "%")) %>%
-    dplyr::arrange(desc(win_prob_raw))
+    dplyr::arrange(dplyr::desc(win_prob_raw))
 }

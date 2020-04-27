@@ -22,5 +22,7 @@ Only use this if that has not already been calculated.
 }
 \examples{
 # Requires posterior distribution
+\dontrun{
 find_best_option(posterior_samples = posterior_samples, distribution = "conversion_rate")
+}
 }

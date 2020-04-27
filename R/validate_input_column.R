@@ -6,6 +6,7 @@
 #' @param column_name String value of the column name
 #' @param input_df Dataframe containing option_name (str) and various other columns
 #'     depending on the distribution type. See vignette for more details.
+#' @param greater_than_zero Boolean: Do all values in the column have to be greater than zero?
 #'
 #' @return None
 #'

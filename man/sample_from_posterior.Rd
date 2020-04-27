@@ -31,7 +31,9 @@ Selects which function to use to sample from the posterior distribution
 input_df <- tibble::tibble(
    option_name = c("A", "B"),
    sum_clicks = c(1000, 1000),
-   sum_conversions = c(100, 120)
+   sum_conversions = c(100, 120),
+   sum_sessions = c(1000, 1000),
+   sum_revenue = c(1000, 1500)
 )
 sample_from_posterior(input_df, "conversion_rate")
 sample_from_posterior(input_df, "rev_per_session")

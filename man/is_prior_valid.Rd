@@ -18,8 +18,3 @@ Boolean (TRUE/FALSE)
 Checks if a single valid prior name is in the list of prior values and if
     that prior value from the list is greater than 0.
 }
-\examples{
-example_prior_list <- list(x = 1, y = 10, z = 15)
-is_prior_valid(priors_list = example_prior_list, valid_prior = "y")
-
-}

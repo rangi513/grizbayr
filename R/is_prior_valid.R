@@ -8,10 +8,7 @@
 #'
 #' @return Boolean (TRUE/FALSE)
 #'
-#' @examples
-#' example_prior_list <- list(x = 1, y = 10, z = 15)
-#' is_prior_valid(priors_list = example_prior_list, valid_prior = "y")
-#'
+
 is_prior_valid <- function(priors_list, valid_prior) {
   if (length(priors_list) == 0) {
     return(FALSE)

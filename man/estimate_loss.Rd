@@ -12,12 +12,14 @@ estimate_loss(
 )
 }
 \arguments{
-\item{posterior_samples}{Tibble returned from sample_from_posterior with 3 columns
+\item{posterior_samples}{Tibble: returned from sample_from_posterior with 3 columns
 `option_name`, `samples`, and `sample_id`.}
 
-\item{wrt_option}{string the option loss is calculated with respect to (wrt). If NULL, the best option will be chosen.}
+\item{distribution}{String: the name of the distribution}
 
-\item{metric}{string the type of loss.
+\item{wrt_option}{String: the option loss is calculated with respect to (wrt). If NULL, the best option will be chosen.}
+
+\item{metric}{String: the type of loss.
 absolute will be the difference, on the outcome scale. 0 when best = wrt_option
 lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
 relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option}
@@ -31,6 +33,8 @@ Estimate Loss
 \examples{
 # Requires posterior_samples dataframe. See `sample_from_posterior()`
 # for an example.
-estimate_loss(posterior_samples = posterior_samples, distribution = "conversion_rate")
 
+\dontrun{
+estimate_loss(posterior_samples = posterior_samples, distribution = "conversion_rate")
+}
 }

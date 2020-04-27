@@ -26,6 +26,7 @@
 #'
 #' @importFrom purrr pmap map2
 #' @importFrom dplyr mutate select %>%
+#' @importFrom stats rgamma rbeta
 #'
 #' @return input_df with 5 new nested columns `beta_params_conv`, `beta_params_ctr`,
 #' `gamma_params_rev`,`gamma_params_cost`, and `samples`
@@ -60,23 +61,23 @@ sample_total_cm <- function(input_df, priors, n_samples = 5e4){
       ),
       rev_per_click_samples = purrr::map2(.x = beta_params_conv,
                                           .y = gamma_params_rev,
-                                          ~ rbeta(n_samples,
-                                                  shape1 = .x$alpha,
-                                                  shape2 = .x$beta) /
-                                            rgamma(n_samples,
-                                                   shape = .y$k,
-                                                   scale = .y$theta)
+                                          ~ stats::rbeta(n_samples,
+                                                         shape1 = .x$alpha,
+                                                         shape2 = .x$beta) /
+                                            stats::rgamma(n_samples,
+                                                          shape = .y$k,
+                                                          scale = .y$theta)
       ),
       cost_per_click_samples = purrr::map(.x = gamma_params_cost,
-                                          ~ rgamma(n_samples,
-                                                   shape = .x$k,
-                                                   scale = .x$theta)
+                                          ~ stats::rgamma(n_samples,
+                                                          shape = .x$k,
+                                                          scale = .x$theta)
       ),
       expected_clicks_samples = purrr::map(.x = beta_params_ctr,
                                            # Expected CTR samples Times Fixed Impressions
-                                            ~ rbeta(n_samples,
-                                                    shape1 = .x$alpha,
-                                                    shape2 = .x$beta) * sum_impressions
+                                            ~ stats::rbeta(n_samples,
+                                                           shape1 = .x$alpha,
+                                                           shape2 = .x$beta) * sum_impressions
       ),
       samples = purrr::pmap(list(rev_per_click = rev_per_click_samples,
                                  cost_per_click = cost_per_click_samples,

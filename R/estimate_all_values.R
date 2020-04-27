@@ -3,7 +3,7 @@
 #' Efficiently estimates all values at once so the posterior only need to be
 #' sampled one time. This function will return as a list win probability,
 #' value remaining, estimated percent lift with respect to the provided option,
-#' and the win probabilty of the best option vs the provided option.
+#' and the win probability of the best option vs the provided option.
 #'
 #' TODO: Add high density credible intervals to this output for each option.
 #'
@@ -29,6 +29,8 @@
 #'     Lift vs Baseline, and Win Probability vs Baseline.
 #' @export
 #'
+#' @importFrom stats quantile
+#'
 #' @examples
 #' input_df <- tibble::tibble(option_name = c("A", "B", "C"),
 #'     sum_clicks = c(1000, 1000, 1000),
@@ -52,14 +54,14 @@ estimate_all_values <- function(input_df, distribution, wrt_option_lift, priors 
                       distribution = distribution,
                       wrt_option = wrt_option_vr,
                       metric = metric) %>%
-    quantile(probs = loss_threshold)
+    stats::quantile(probs = loss_threshold)
 
   # Calculate Lift Relative to Baseline
   lift <- estimate_lift(posterior_samples = posterior_samples,
                         distribution = distribution,
                         wrt_option = wrt_option_lift,
                         metric = metric) %>%
-    quantile(probs = 1 - lift_threshold)
+    stats::quantile(probs = 1 - lift_threshold)
 
   # Calculate Win Prob vs Baseline
   win_prob_vs_base <- estimate_win_prob_vs_baseline_given_posterior(posterior_samples,

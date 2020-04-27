@@ -4,7 +4,8 @@
 #' Raises error if not TRUE
 #'
 #' @param wrt_option string name of the option
-#' @param posterior_samples
+#' @param posterior_samples Tibble returned from sample_from_posterior with 3 columns
+#'   `option_name`, `samples`, and `sample_id`.
 #'
 #' @return None
 validate_wrt_option <- function(wrt_option, posterior_samples){

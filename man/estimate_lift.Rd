@@ -33,9 +33,12 @@ Estimates lift distribution vector from posterior samples.
 \examples{
 # Requires posterior_samples dataframe. See `sample_from_posterior()`
 # for an example.
+
+\dontrun{
 estimate_lift(posterior_samples = posterior_samples,
               distribution = "conversion_rate",
               wrt_option = "A",
               metric = "lift")
+}
 
 }

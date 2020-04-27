@@ -18,6 +18,7 @@
 #'
 #' @importFrom purrr map map2
 #' @importFrom dplyr mutate %>%
+#' @importFrom stats rgamma
 #'
 #' @return input_df with 2 new nested columns `gamma_params` and `samples`
 #'
@@ -31,9 +32,9 @@ sample_cpc <- function(input_df, priors, n_samples = 5e4){
                                                 priors = priors)
       ),
       samples = purrr::map(.x = gamma_params,
-                           ~ rgamma(n_samples,
-                                    shape = .x$k,
-                                    scale = .x$theta)
+                           ~ stats::rgamma(n_samples,
+                                           shape = .x$k,
+                                           scale = .x$theta)
       )
     )
 }

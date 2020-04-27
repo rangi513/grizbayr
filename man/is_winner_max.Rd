@@ -7,7 +7,7 @@
 is_winner_max(distribution)
 }
 \arguments{
-\item{is_winner_max}{}
+\item{distribution}{String: the name of the distribution}
 }
 \value{
 Boolean TRUE/FALSE

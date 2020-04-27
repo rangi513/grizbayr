@@ -8,6 +8,7 @@ Description: Uses simple Bayesian conjugate prior update rules to calculate
     the following metrics for various marketing objectives: Win Probability 
     of each option, Value Remaining in the Test, and Percent Lift Over the 
     Baseline.
+Depends: R (>= 2.10)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

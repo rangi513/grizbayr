@@ -9,7 +9,8 @@ validate_wrt_option(wrt_option, posterior_samples)
 \arguments{
 \item{wrt_option}{string name of the option}
 
-\item{posterior_samples}{}
+\item{posterior_samples}{Tibble returned from sample_from_posterior with 3 columns
+`option_name`, `samples`, and `sample_id`.}
 }
 \value{
 None

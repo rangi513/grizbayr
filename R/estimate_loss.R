@@ -1,9 +1,10 @@
 #' Estimate Loss
 #'
-#' @param posterior_samples Tibble returned from sample_from_posterior with 3 columns
+#' @param posterior_samples Tibble: returned from sample_from_posterior with 3 columns
 #'   `option_name`, `samples`, and `sample_id`.
-#' @param wrt_option string the option loss is calculated with respect to (wrt). If NULL, the best option will be chosen.
-#' @param metric string the type of loss.
+#' @param distribution String: the name of the distribution
+#' @param wrt_option String: the option loss is calculated with respect to (wrt). If NULL, the best option will be chosen.
+#' @param metric String: the type of loss.
 #'   absolute will be the difference, on the outcome scale. 0 when best = wrt_option
 #'   lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
 #'   relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option
@@ -14,11 +15,15 @@
 #' @importFrom magrittr use_series
 #' @importFrom tidyr pivot_wider
 #'
+#' @export
+#'
 #' @examples
 #' # Requires posterior_samples dataframe. See `sample_from_posterior()`
 #' # for an example.
-#' estimate_loss(posterior_samples = posterior_samples, distribution = "conversion_rate")
 #'
+#' \dontrun{
+#' estimate_loss(posterior_samples = posterior_samples, distribution = "conversion_rate")
+#' }
 estimate_loss <- function(posterior_samples, distribution, wrt_option = NULL, metric = c("absolute", "lift", "relative_risk")) {
   metric <- match.arg(metric)
 

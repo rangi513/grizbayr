@@ -9,11 +9,16 @@
 #' @param distribution String: name of the distribution
 #'
 #' @return String: the best option name
+#'
+#' @importFrom dplyr filter
+#' @importFrom magrittr use_series %>%
 #' @export
 #'
 #' @examples
 #' # Requires posterior distribution
+#' \dontrun{
 #' find_best_option(posterior_samples = posterior_samples, distribution = "conversion_rate")
+#' }
 find_best_option <- function(posterior_samples, distribution){
   estimate_win_prob_given_posterior(posterior_samples = posterior_samples,
                                     winner_is_max = is_winner_max(distribution)) %>%

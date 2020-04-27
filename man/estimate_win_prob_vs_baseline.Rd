@@ -34,6 +34,8 @@ input_df <- tibble::tibble(
     sum_clicks = c(1000, 1000, 1000),
     sum_conversions = c(100, 120, 110)
 )
-estimate_win_prob_vs_baseline(input_df = input_df, distribution = "conversion_rate", wrt_option = "B")
+estimate_win_prob_vs_baseline(input_df = input_df,
+    distribution = "conversion_rate",
+    wrt_option = "B")
 
 }

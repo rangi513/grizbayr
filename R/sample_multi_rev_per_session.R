@@ -21,6 +21,7 @@
 #'
 #' @importFrom purrr map map2 pmap
 #' @importFrom dplyr mutate select %>%
+#' @importFrom stats rgamma
 #'
 #' @return input_df with 4 new nested columns `dirichlet_params`,
 #'      `gamma_params_A`, `gamma_params_B`, and `samples`.
@@ -51,12 +52,12 @@ sample_multi_rev_per_session <- function(input_df, priors, n_samples = 5e4){
                                                                     alphas_list = .x)
       ),
       gamma_samples_A = purrr::map(gamma_params_A,
-                                   ~ rgamma(n_samples,
+                                   ~ stats::rgamma(n_samples,
                                             shape = .x$k,
                                             scale = .x$theta)
       ),
       gamma_samples_B = purrr::map(gamma_params_B,
-                                   ~ rgamma(n_samples,
+                                   ~ stats::rgamma(n_samples,
                                             shape = .x$k,
                                             scale = .x$theta)
       ),

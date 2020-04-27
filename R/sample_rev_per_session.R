@@ -35,6 +35,7 @@
 #'
 #' @importFrom purrr map2
 #' @importFrom dplyr mutate %>%
+#' @importFrom stats rgamma rbeta
 #'
 #' @return input_df with 3 new nested columns `beta_params`, `gamma_params`, and `samples`
 #'
@@ -55,12 +56,12 @@ sample_rev_per_session <- function(input_df, priors, n_samples = 5e4){
       ),
       samples = purrr::map2(.x = beta_params,
                             .y = gamma_params,
-                            ~ rbeta(n_samples,
-                                    shape1 = .x$alpha,
-                                    shape2 = .x$beta) /
-                              rgamma(n_samples,
-                                     shape = .y$k,
-                                     scale = .y$theta)
+                            ~ stats::rbeta(n_samples,
+                                           shape1 = .x$alpha,
+                                           shape2 = .x$beta) /
+                              stats::rgamma(n_samples,
+                                            shape = .y$k,
+                                            scale = .y$theta)
       )
     )
 }

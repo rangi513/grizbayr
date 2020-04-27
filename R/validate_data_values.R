@@ -1,17 +1,12 @@
 #' Validate Data Values
 #'
+#' Validates data values are all greater than 0.
+#'
 #' @param data_values List of named data values
 #'
 #' @return None
 #'
 #' @importFrom purrr walk
-#'
-#' @examples
-#' validate_data_values(data_values = list(successes = 22, failures = 100))
-#' ## DONT RUN
-#' \donttest{
-#' validate_data_values(data_values = list(successes = 22, failures = -1))
-#' }
 #'
 validate_data_values <- function(data_values){
   if (length(data_values) == 0) {
