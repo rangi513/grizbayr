@@ -7,10 +7,11 @@
 sample_response_rate(input_df, priors, n_samples = 50000)
 }
 \arguments{
-\item{input_df}{Dataframe containing option_name (str), sum_conversions (dbl),
-and sum_sessions (dbl).}
+\item{input_df}{Dataframe containing option_name (str),
+sum_conversions (dbl), and sum_sessions (dbl).}
 
-\item{priors}{Optional list of priors alpha0 and beta0. Default \eqn{Beta(1,1)} will be use otherwise.}
+\item{priors}{Optional list of priors alpha0 and beta0.
+Default \eqn{Beta(1,1)} will be use otherwise.}
 
 \item{n_samples}{Optional integer value. Defaults to 50,000 samples.}
 }

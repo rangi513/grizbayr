@@ -7,23 +7,25 @@
 sample_multi_rev_per_session(input_df, priors, n_samples = 50000)
 }
 \arguments{
-\item{input_df}{Dataframe containing option_name (str), sum_conversions (dbl),
-sum_sessions (dbl), sum_revenue (dbl), sum_conversion_2 (dbl), sum_sessions_2 (dbl),
-sum_revenue_2 (dbl).}
+\item{input_df}{Dataframe containing option_name (str),
+sum_conversions (dbl), sum_sessions (dbl), sum_revenue (dbl),
+sum_conversion_2 (dbl), sum_sessions_2 (dbl), sum_revenue_2 (dbl).}
 
-\item{priors}{Optional list of priors alpha0 and beta0. Default \eqn{Beta(1,1)} will be use otherwise.}
+\item{priors}{Optional list of priors alpha0 and beta0.
+Default \eqn{Beta(1,1)} will be use otherwise.}
 
 \item{n_samples}{Optional integer value. Defaults to 50,000 samples.}
 }
 \value{
 input_df with 4 new nested columns `dirichlet_params`,
-     `gamma_params_A`, `gamma_params_B`, and `samples`.
+    `gamma_params_A`, `gamma_params_B`, and `samples`.
+    `samples` in each row should be a tibble of length `n_samples`.
 }
 \description{
 Adds 5 new nested columns to the input_df: `dirichlet_params`,
     `gamma_params_A`, `gamma_params_B`, and `samples`.
-    `samples` in each row should be a tibble of length `n_samples`.
-    This samples from multiple revenue per session distributions at once.
+    This samples from multiple revenue per session distributions
+    at once.
 }
 \details{
 See update_rules vignette for a mathematical representation.

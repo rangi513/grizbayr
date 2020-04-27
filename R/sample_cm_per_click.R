@@ -1,11 +1,14 @@
 #' Sample CM Per Click
 #'
-#' Adds 3 new nested columns to the input_df: `beta_params`,
+#' @description
+#' Adds 4 new nested columns to the input_df: `beta_params`,
 #'     `gamma_params_rev`, `gamma_params_cost`and `samples`
-#'     `beta_params` and `gamma_params_rev` in each row should be a
-#'      tibble of length 2 (\eqn{\alpha} and \eqn{\beta} parameters
-#'      and \eqn{k} and \eqn{\theta} parameters)
-#'     `samples` in each row should be a tibble of length `n_samples`
+#'
+#' @details
+#'`beta_params` and `gamma_params_rev` in each row should be a
+#' tibble of length 2 (\eqn{\alpha} and \eqn{\beta} parameters
+#' and \eqn{k} and \eqn{\theta} parameters)
+#'`samples` in each row should be a tibble of length `n_samples`
 #'
 #' See update_rules vignette for a mathematical representation.
 #' \deqn{CMPerClick = ConversionsPerClick * RevPerConversion - CostPerClick}
@@ -14,7 +17,7 @@
 #'     and sum_clicks (dbl).
 #' @param priors Optional list of priors {alpha0, beta0} for Beta, {k0, theta0} for Gamma Inverse Revenue,
 #'     and {k01, theta01} for Gamma Cost (uses alternate priors so they can be different from Revenue).
-#'     Default \eqn{Beta(1,1) and \eqn{Gamma(1, 250)}} will be use otherwise.
+#'     Default \eqn{Beta(1,1)} and \eqn{Gamma(1, 250)} will be use otherwise.
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom purrr pmap map2

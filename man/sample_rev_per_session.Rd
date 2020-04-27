@@ -7,11 +7,12 @@
 sample_rev_per_session(input_df, priors, n_samples = 50000)
 }
 \arguments{
-\item{input_df}{Dataframe containing option_name (str), sum_conversions (dbl), sum_revenue (dbl),
-and sum_clicks (dbl).}
+\item{input_df}{Dataframe containing option_name (str),
+sum_conversions (dbl), sum_revenue (dbl), and sum_clicks (dbl).}
 
-\item{priors}{Optional list of priors {alpha0, beta0} for Beta and {k0, theta0} for Gamma.
-Default \eqn{Beta(1,1) and \eqn{Gamma(1, 250)}} will be use otherwise.}
+\item{priors}{Optional list of priors {alpha0, beta0} for Beta
+and {k0, theta0} for Gamma. Default \eqn{Beta(1,1)}
+and \eqn{Gamma(1, 250)} will be use otherwise.}
 
 \item{n_samples}{Optional integer value. Defaults to 50,000 samples.}
 }

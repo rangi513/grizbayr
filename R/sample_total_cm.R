@@ -1,35 +1,43 @@
 #' Sample Total CM (Given Impression Count)
 #'
-#' Adds 4 new nested columns to the input_df: `beta_params_ctr`, `beta_params_conv`,
-#'`gamma_params_rev`, `gamma_params_cost`and `samples`.
-#'`beta_params` and `gamma_params` in each row should be a tibble of length 2 (\eqn{\alpha}
-#'    and \eqn{\beta} parameters and \eqn{k} and \eqn{\theta} parameters).
+#' @description
+#' Adds 4 new nested columns to the input_df: `beta_params_ctr`,
+#' `beta_params_conv`,`gamma_params_rev`, `gamma_params_cost`
+#' and `samples`.
+#'
+#' @details
+#'`beta_params` and `gamma_params` in each row should be a tibble of length 2
+#' (\eqn{\alpha} and \eqn{\beta} params and \eqn{k} and \eqn{\theta} params).
 #'`samples` in each row should be a tibble of length `n_samples`.
-#' One assumption in this model is that sum_impressions is not stochastic. This assumes that
-#' Clicks are stochastically generated from a set number of impressions. It does not require
-#' that the number of impressions are equal on either side. Generally this assumption holds
-#' true in marketing tests where traffic is split 50/50 and very little variance is observed
+#'
+#' One assumption in this model is that sum_impressions is not stochastic.
+#' This assumes that Clicks are stochastically generated from a set number
+#' of Impressions. It does not require that the number of impressions are
+#' equal on either side. Generally this assumption holds true in marketing
+#' tests where traffic is split 50/50 and very little variance is observed
 #' in the number of impressions on either side.
 #'
 #'
 #' See update_rules vignette for a mathematical representation.
 #'
-#' \deqn{TotalCM = Impressions * ExpectedCTR * (RevPerOrder * OrdersPerClick - ExpectedCostPerClick)}
+#' \deqn{TotalCM = Impr * ExpectedCTR * (RevPerOrder * OrdersPerClick - ExpectedCPC)}
 #'
 #'
-#' @param input_df Dataframe containing option_name (str), sum_conversions (dbl), sum_revenue (dbl),
-#'     and sum_clicks (dbl).
-#' @param priors Optional list of priors {alpha0, beta0} for Beta, {k0, theta0} for Gamma Inverse Revenue,
-#'     and {k01, theta01} for Gamma Cost (uses alternate priors so they can be different from Revenue).
-#'     Default \eqn{Beta(1,1) and \eqn{Gamma(1, 250)}} will be use otherwise.
+#' @param input_df Dataframe containing option_name (str),
+#'     sum_conversions (dbl), sum_revenue (dbl), and sum_clicks (dbl).
+#' @param priors Optional list of priors {alpha0, beta0} for Beta,
+#'     {k0, theta0} for Gamma Inverse Revenue, and {k01, theta01} for
+#'     Gamma Cost (uses alternate priors so they can be different from Revenue).
+#'     Default \eqn{Beta(1,1)} and \eqn{Gamma(1, 250)} will be use otherwise.
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom purrr pmap map2
 #' @importFrom dplyr mutate select %>%
 #' @importFrom stats rgamma rbeta
 #'
-#' @return input_df with 5 new nested columns `beta_params_conv`, `beta_params_ctr`,
-#' `gamma_params_rev`,`gamma_params_cost`, and `samples`
+#' @return input_df with 5 new nested columns `beta_params_conv`,
+#'     `beta_params_ctr`, `gamma_params_rev`,`gamma_params_cost`,
+#'     and `samples`
 #'
 sample_total_cm <- function(input_df, priors, n_samples = 5e4){
   input_df %>%

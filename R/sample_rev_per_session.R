@@ -27,10 +27,11 @@
 #' This function makes sense to use if there is a distribution of possible revenue values
 #' that can be produced from a single order or conversion.
 #'
-#' @param input_df Dataframe containing option_name (str), sum_conversions (dbl), sum_revenue (dbl),
-#'     and sum_clicks (dbl).
-#' @param priors Optional list of priors {alpha0, beta0} for Beta and {k0, theta0} for Gamma.
-#'     Default \eqn{Beta(1,1) and \eqn{Gamma(1, 250)}} will be use otherwise.
+#' @param input_df Dataframe containing option_name (str),
+#'     sum_conversions (dbl), sum_revenue (dbl), and sum_clicks (dbl).
+#' @param priors Optional list of priors {alpha0, beta0} for Beta
+#'     and {k0, theta0} for Gamma. Default \eqn{Beta(1,1)}
+#'     and \eqn{Gamma(1, 250)} will be use otherwise.
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom purrr map2

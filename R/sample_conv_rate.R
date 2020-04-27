@@ -11,9 +11,10 @@
 #' Conversion Rate is sampled from a Beta distribution with a Binomial likelihood
 #' of an individual converting.
 #'
-#' @param input_df Dataframe containing option_name (str), sum_conversions (dbl),
-#'     and sum_clicks (dbl).
-#' @param priors Optional list of priors alpha0 and beta0. Default \eqn{Beta(1,1)} will be use otherwise.
+#' @param input_df Dataframe containing option_name (str),
+#'     sum_conversions (dbl), and sum_clicks (dbl).
+#' @param priors Optional list of priors alpha0 and beta0.
+#'     Default \eqn{Beta(1,1)} will be use otherwise.
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom purrr map map2

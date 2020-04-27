@@ -7,7 +7,7 @@
 #'
 #' See update_rules vignette for a mathematical representation.
 #' \deqn{cpc_i ~ Exponential(\lambda)}
-#' \deqn{\lambda ~ Gamma(\k, \theta)}
+#' \deqn{\lambda ~ Gamma(k, \theta)}
 #' Average CPC is sampled from a Gamma distribution with an Exponential likelihood
 #' of an individual cost.
 #'

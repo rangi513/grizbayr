@@ -24,10 +24,11 @@
 #' of an individual cost.
 #'
 #'
-#' @param input_df Dataframe containing option_name (str), sum_conversions (dbl), sum_cost (dbl),
-#'     and sum_clicks (dbl).
-#' @param priors Optional list of priors {alpha0, beta0} for Beta and {k0, theta0} for Gamma.
-#'     Default \eqn{Beta(1,1) and \eqn{Gamma(1, 250)}} will be use otherwise.
+#' @param input_df Dataframe containing option_name (str), sum_conversions (dbl),
+#'     sum_cost (dbl), and sum_clicks (dbl).
+#' @param priors Optional list of priors {alpha0, beta0} for Beta and {k0, theta0}
+#'     for Gamma.
+#'     Default \eqn{Beta(1,1)} and \eqn{Gamma(1, 250)} will be use otherwise.
 #' @param n_samples Optional integer value. Defaults to 50,000 samples.
 #'
 #' @importFrom purrr map2

@@ -5,7 +5,7 @@
 #' @param posterior_samples Tibble of data in long form with 2 columns
 #' `option_name` and `samples`
 #' @param wp_raw Tibble of win probabilities with the columns:
-#'     `option_name` and `win_prob_raw``
+#'     `option_name` and `win_prob_raw`
 #'
 #' @return wp_raw table with new rows if option names were missing.
 #'
