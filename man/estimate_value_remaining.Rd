@@ -47,9 +47,6 @@ estimate_value_remaining(input_df,
     threshold = 0.99)
 estimate_value_remaining(input_df,
     distribution = "conversion_rate",
-    metric = "absolute")
-estimate_value_remaining(input_df,
-    distribution = "conversion_rate",
     wrt_option = "A",
     metric = "absolute")
 

@@ -32,8 +32,8 @@
 #' @importFrom stats quantile
 #'
 #' @examples
-#' \dontrun{
-#' input_df <- tibble::tibble(option_name = c("A", "B", "C"),
+#' \donttest{
+#' input_df <- data.frame(option_name = c("A", "B", "C"),
 #'     sum_clicks = c(1000, 1000, 1000),
 #'     sum_conversions = c(100, 120, 110))
 #' estimate_all_values(input_df, distribution = "conversion_rate", wrt_option_lift = "A")
