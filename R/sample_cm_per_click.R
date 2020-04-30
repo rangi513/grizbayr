@@ -61,9 +61,9 @@ sample_cm_per_click <- function(input_df, priors, n_samples = 5e4){
                                               shape = ..2$k,
                                               scale = ..2$theta) ) -
                               # Minus Variable Cost Per Click
-                              stats::rgamma(n_samples,
-                                            shape = ..3$k,
-                                            scale = ..3$theta)
+                              1 / stats::rgamma(n_samples,
+                                                shape = ..3$k,
+                                                scale = ..3$theta)
       )
     )
 }
