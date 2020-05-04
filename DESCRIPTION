@@ -1,13 +1,15 @@
 Package: grizbayr
 Type: Package
 Title: Bayesian Inference for A|B and Bandit Marketing Tests
-Version: 1.1.3
+Version: 1.2.0
 Author: Ryan Angi
 Maintainer: Ryan Angi <rangi@redventures.com>
 Description: Uses simple Bayesian conjugate prior update rules to calculate 
-    the following metrics for various marketing objectives: Win Probability 
-    of each option, Value Remaining in the Test, and Percent Lift Over the 
-    Baseline.
+    the win probability of each option, value remaining in the test, and 
+    percent lift over the baseline for various marketing objectives.
+    References: 
+    Fink, Daniel (1997) "A Compendium of Conjugate Priors" <http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=68B0566CD61DD805F7E6A908CBBC896D?doi=10.1.1.157.5540&rep=rep1&type=pdf>.
+    Stucchio, Chris (2015) "Bayesian A/B Testing at VWO" <http://cdn2.hubspot.net/hubfs/310840/VWO_SmartStats_technical_whitepaper.pdf>.
 Depends: R (>= 2.10)
 License: MIT + file LICENSE
 Encoding: UTF-8
