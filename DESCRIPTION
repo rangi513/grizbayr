@@ -8,7 +8,7 @@ Description: Uses simple Bayesian conjugate prior update rules to calculate
     the win probability of each option, value remaining in the test, and 
     percent lift over the baseline for various marketing objectives.
     References: 
-    Fink, Daniel (1997) "A Compendium of Conjugate Priors" <http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=68B0566CD61DD805F7E6A908CBBC896D?doi=10.1.1.157.5540&rep=rep1&type=pdf>.
+    Fink, Daniel (1997) "A Compendium of Conjugate Priors" <doi:10.1.1.157/5540>.
     Stucchio, Chris (2015) "Bayesian A/B Testing at VWO" <http://cdn2.hubspot.net/hubfs/310840/VWO_SmartStats_technical_whitepaper.pdf>.
 Depends: R (>= 2.10)
 License: MIT + file LICENSE
