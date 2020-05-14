@@ -23,12 +23,13 @@
 #'
 estimate_win_prob_given_posterior <- function(posterior_samples, winner_is_max = TRUE){
   validate_posterior_samples(posterior_samples)
-
+  n_unique_options <- length(unique(posterior_samples$option_name))
+  samples_per_option <- nrow(posterior_samples)/n_unique_options
   wp_raw <- posterior_samples %>%
     dplyr::group_by(.data$sample_id) %>%
     dplyr::filter(.data$samples == if(winner_is_max) max(.data$samples) else min(.data$samples)) %>%
     dplyr::group_by(.data$option_name, add = FALSE) %>%
-    dplyr::summarise(win_prob_raw = dplyr::n()/nrow(posterior_samples))
+    dplyr::summarise(win_prob_raw = dplyr::n()/samples_per_option)
 
   wp_raw_imputed <- impute_missing_options(posterior_samples, wp_raw)
 
