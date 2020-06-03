@@ -7,9 +7,9 @@
 #' @param distribution String of the distribution name
 #' @param wrt_option string the option lift is calculated with respect to (wrt). Required.
 #' @param metric string the type of lift.
-#'   absolute will be the difference, on the outcome scale. 0 when best = wrt_option
-#'   lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
-#'   relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option
+#'   `absolute`` will be the difference, on the outcome scale. 0 when best = wrt_option
+#'   `lift`` will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
+#'   `relative_risk`` will be the ratio best/wrt_option, 1 when best = wrt_option
 #'
 #' @return numeric, the lift distribution
 #' @export
@@ -28,8 +28,10 @@
 #'               metric = "lift")
 #'}
 #'
-estimate_lift <- function(posterior_samples, distribution, wrt_option, metric = c("absolute", "lift", "relative_risk")){
-  metric <- match.arg(metric)
+estimate_lift <- function(posterior_samples, distribution, wrt_option, metric = "lift"){
+  if(!metric %in% c("lift", "relative_risk", "absolute")){
+    stop("Invalid argument. `metric` must be one of `lift`, `absolute`, or `relative_risk`.")
+  }
   validate_wrt_option(wrt_option, posterior_samples)
 
   best_option <- find_best_option(posterior_samples, distribution)

@@ -4,12 +4,7 @@
 \alias{estimate_lift}
 \title{Estimate Lift Distribution}
 \usage{
-estimate_lift(
-  posterior_samples,
-  distribution,
-  wrt_option,
-  metric = c("absolute", "lift", "relative_risk")
-)
+estimate_lift(posterior_samples, distribution, wrt_option, metric = "lift")
 }
 \arguments{
 \item{posterior_samples}{Tibble returned from sample_from_posterior with 3 columns
@@ -20,9 +15,9 @@ estimate_lift(
 \item{wrt_option}{string the option lift is calculated with respect to (wrt). Required.}
 
 \item{metric}{string the type of lift.
-absolute will be the difference, on the outcome scale. 0 when best = wrt_option
-lift will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
-relative_risk will be the ratio best/wrt_option, 1 when best = wrt_option}
+`absolute`` will be the difference, on the outcome scale. 0 when best = wrt_option
+`lift`` will be the (best - wrt_option) / wrt_option, 0 when best = wrt_option
+`relative_risk`` will be the ratio best/wrt_option, 1 when best = wrt_option}
 }
 \value{
 numeric, the lift distribution
