@@ -1,7 +1,7 @@
 Package: grizbayr
 Type: Package
 Title: Bayesian Inference for A|B and Bandit Marketing Tests
-Version: 1.2.2
+Version: 1.2.3
 Author: Ryan Angi
 Maintainer: Ryan Angi <rangi@redventures.com>
 Description: Uses simple Bayesian conjugate prior update rules to calculate 
@@ -18,7 +18,7 @@ RoxygenNote: 7.1.0
 Imports: 
     purrr,
     dplyr,
-    tidyr,
+    tidyr (>= 1.0.0),
     magrittr,
     tibble,
     rlang

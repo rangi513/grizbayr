@@ -28,7 +28,7 @@ estimate_win_prob_given_posterior <- function(posterior_samples, winner_is_max =
   wp_raw <- posterior_samples %>%
     dplyr::group_by(.data$sample_id) %>%
     dplyr::filter(.data$samples == if(winner_is_max) max(.data$samples) else min(.data$samples)) %>%
-    dplyr::group_by(.data$option_name, add = FALSE) %>%
+    dplyr::group_by(.data$option_name) %>%
     dplyr::summarise(win_prob_raw = dplyr::n()/samples_per_option)
 
   wp_raw_imputed <- impute_missing_options(posterior_samples, wp_raw)

@@ -1,4 +1,11 @@
+# grizbayr 1.2.3
+
 # News
+
+## 1.2.3
+
+- Remove `add = FALSE` argument to a group_by since default is already FALSE and dplyr 1.0.0 throws deprecation warning.
+- Add hard requirement for tidyr >= 1.0.0 to use pivot_wider and pivot_longer functions.
 
 ## 1.2.2
 
