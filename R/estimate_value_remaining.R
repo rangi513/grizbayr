@@ -43,5 +43,5 @@ estimate_value_remaining <- function(input_df, distribution, priors = list(),
                 distribution = distribution,
                 wrt_option = wrt_option,
                 metric = metric) %>%
-    stats::quantile(probs = threshold)
+    stats::quantile(probs = threshold, na.rm = TRUE)
 }

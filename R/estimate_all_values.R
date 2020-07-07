@@ -56,14 +56,14 @@ estimate_all_values <- function(input_df, distribution, wrt_option_lift, priors 
                       distribution = distribution,
                       wrt_option = wrt_option_vr,
                       metric = metric) %>%
-    stats::quantile(probs = loss_threshold)
+    stats::quantile(probs = loss_threshold, na.rm = TRUE)
 
   # Calculate Lift Relative to Baseline
   lift <- estimate_lift(posterior_samples = posterior_samples,
                         distribution = distribution,
                         wrt_option = wrt_option_lift,
                         metric = metric) %>%
-    stats::quantile(probs = 1 - lift_threshold)
+    stats::quantile(probs = 1 - lift_threshold, na.rm = TRUE)
 
   # Calculate Win Prob vs Baseline
   win_prob_vs_base <- estimate_win_prob_vs_baseline_given_posterior(posterior_samples,

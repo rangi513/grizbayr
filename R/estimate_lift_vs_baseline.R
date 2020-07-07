@@ -36,5 +36,5 @@ estimate_lift_vs_baseline <- function(input_df, distribution, priors = list(),
                 wrt_option = wrt_option,
                 metric = metric) %>%
     # Select a single point
-    stats::quantile(probs = 1 - threshold)
+    stats::quantile(probs = 1 - threshold, na.rm = TRUE)
 }
