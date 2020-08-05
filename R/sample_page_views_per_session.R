@@ -33,7 +33,7 @@ sample_page_views_per_session <- function(input_df, priors, n_samples = 5e4){
     dplyr::mutate(
       gamma_params = purrr::map2(.x = .data$sum_page_views,
                                  .y = .data$sum_sessions,
-                                 ~ update_gamma(k = .x,
+                                 ~ update_gamma(k = .x - .y, # Page Views offset so every session starts with 0 PV. Add 1 to likelihood observations
                                                 theta = .y,
                                                 priors = priors)
       ),
