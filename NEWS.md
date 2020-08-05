@@ -1,8 +1,8 @@
-# grizbayr 1.3.0
-
-# grizbayr 1.2.3
-
 # News
+
+## 1.3.0
+
+- Add 2 new distributions: **Page Views Per Session** and **Session Duration**
 
 ## 1.2.3
 
