@@ -25,7 +25,9 @@ test_that("sample_from_posterior returns correct dataframe shape for all types",
     sum_revenue = c(900, 1200, 1150),
     sum_cost = c(10, 50, 30),
     sum_conversions_2 = c(10, 8, 20),
-    sum_revenue_2 = c(10, 16, 15)
+    sum_revenue_2 = c(10, 16, 15),
+    sum_duration = c(5000, 3000, 4000),
+    sum_page_views = c(3000, 2000, 1345)
   ) %>%
     dplyr::mutate(sum_clicks = sum_sessions)
   n_samples <- 150
