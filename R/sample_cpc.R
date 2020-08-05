@@ -33,9 +33,9 @@ sample_cpc <- function(input_df, priors, n_samples = 5e4){
                                                 priors = priors)
       ),
       samples = purrr::map(.x = .data$gamma_params,
-                           ~ stats::rgamma(n_samples,
-                                           shape = .x$k,
-                                           scale = .x$theta)
+                           ~ 1 / stats::rgamma(n_samples,
+                                               shape = .x$k,
+                                               scale = .x$theta)
       )
     )
 }
