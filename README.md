@@ -27,6 +27,8 @@ See the `intro` vignette for examples to get started.
  - Total Contribution Margin (CM)
  - CM Per Click
  - Cost Per Click (CPC)
+ - Session Duration (seconds)
+ - Page Views Per Session
 
 
 ## Contributing
@@ -41,7 +43,7 @@ To add a new posterior distribution you must complete the following:
     - Select this object from the package
     - Add a new row with a 1 for every column that is required for this distribution (this is for data validation and clear alerting for the end user)
     - Save the updated tibble object using `use_data(new_tibble, internal = TRUE, overwrite = TRUE)` and it will be saved as `sysdata.rda` in the package for internal use.
-    - Update the start.Rmd markdown table to include which columns are required for your function.
+    - Update the intro.Rmd markdown table to include which columns are required for your function.
   
 1. Create a PR for review.  
 
