@@ -40,7 +40,7 @@ sample_page_views_per_session <- function(input_df, priors, n_samples = 5e4){
       samples = purrr::map(.x = .data$gamma_params,
                            ~ stats::rgamma(n_samples,
                                            shape = .x$k,
-                                           scale = .x$theta)
+                                           scale = .x$theta) + 1 # Adding the offset from above back in
       )
     )
 }
