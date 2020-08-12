@@ -20,7 +20,7 @@ input_df with 2 new nested columns `gamma_params` and `samples`
 }
 \description{
 Adds 2 new nested columns to the input_df: `gamma_params` and `samples`
-    `gamma_params` in each row should be a tibble of length 2 (\eqn{\k}
+    `gamma_params` in each row should be a tibble of length 2 (\eqn{k}
         and \eqn{\theta} parameters)
     `samples` in each row should be a tibble of length `n_samples`
 }

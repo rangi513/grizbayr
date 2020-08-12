@@ -22,14 +22,14 @@ input_df with 2 new nested columns `gamma_params` and `samples`
 }
 \description{
 Adds 2 new nested columns to the input_df: `gamma_params` and `samples`
-    `gamma_params` in each row should be a tibble of length 2 (\eqn{\k}
+    `gamma_params` in each row should be a tibble of length 2 (\eqn{k}
         and \eqn{\theta} parameters)
     `samples` in each row should be a tibble of length `n_samples`
 }
 \details{
 See update_rules vignette for a mathematical representation.
 \deqn{page_views_i ~ Poisson(\lambda)}
-\deqn{\lambda ~ Gamma(\k, \theta)}
+\deqn{\lambda ~ Gamma(k, \theta)}
 Page Views Per Visit is sampled from a Gamma distribution with a Poisson likelihood
 of an individual having n page views by the end of their session.
 
