@@ -23,7 +23,7 @@ Estimate Win Probability Given Posterior Distribution
 \examples{
 # Requires posterior_samples dataframe. See `sample_from_posterior()`
 # for an example.
-\donttest{
+\dontrun{
 estimate_win_prob_given_posterior(posterior_samples = posterior_samples)
 estimate_win_prob_given_posterior(
     posterior_samples = posterior_samples,

@@ -17,7 +17,7 @@
 #'
 #' @examples
 #' # Requires posterior distribution
-#' \donttest{
+#' \dontrun{
 #' find_best_option(posterior_samples = posterior_samples, distribution = "conversion_rate")
 #' }
 find_best_option <- function(posterior_samples, distribution){

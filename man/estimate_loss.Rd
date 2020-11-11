@@ -34,7 +34,7 @@ Estimate Loss
 # Requires posterior_samples dataframe. See `sample_from_posterior()`
 # for an example.
 
-\donttest{
+\dontrun{
 estimate_loss(posterior_samples = posterior_samples, distribution = "conversion_rate")
 }
 }

@@ -32,10 +32,10 @@
 #' @importFrom stats quantile
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' input_df <- data.frame(option_name = c("A", "B", "C"),
 #'     sum_clicks = c(1000, 1000, 1000),
-#'     sum_conversions = c(100, 120, 110), stringsAsFactors = F)
+#'     sum_conversions = c(100, 120, 110), stringsAsFactors = FALSE)
 #' estimate_all_values(input_df, distribution = "conversion_rate", wrt_option_lift = "A")
 #' }
 #'

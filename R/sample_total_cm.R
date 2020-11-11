@@ -82,12 +82,15 @@ sample_total_cm <- function(input_df, priors, n_samples = 5e4){
                                                               shape = .x$k,
                                                               scale = .x$theta)
       ),
-      expected_clicks_samples = purrr::map(.x = .data$beta_params_ctr,
-                                           # Expected CTR samples Times Fixed Impressions
+      expected_clicks_rates = purrr::map(.x = .data$beta_params_ctr,
                                             ~ stats::rbeta(n_samples,
                                                            shape1 = .x$alpha,
-                                                           shape2 = .x$beta) * sum_impressions
+                                                           shape2 = .x$beta)
       ),
+      # Expected CTR samples Times Fixed Impressions
+      expected_clicks_samples = purrr::map2(.x = .data$expected_clicks_rates,
+                                            .y = .data$sum_impressions,
+                                             ~ .x * .y),
       samples = purrr::pmap(list(rev_per_click = .data$rev_per_click_samples,
                                  cost_per_click = .data$cost_per_click_samples,
                                  expected_clicks = .data$expected_clicks_samples),
@@ -97,6 +100,7 @@ sample_total_cm <- function(input_df, priors, n_samples = 5e4){
     dplyr::select(
       -.data$rev_per_click_samples,
       -.data$cost_per_click_samples,
+      -.data$expected_clicks_rates,
       -.data$expected_clicks_samples
       )
 }

@@ -22,7 +22,7 @@
 #' # Requires posterior_samples dataframe. See `sample_from_posterior()`
 #' # for an example.
 #'
-#' \donttest{
+#' \dontrun{
 #' estimate_loss(posterior_samples = posterior_samples, distribution = "conversion_rate")
 #' }
 estimate_loss <- function(posterior_samples, distribution, wrt_option = NULL, metric = c("absolute", "lift", "relative_risk")) {
