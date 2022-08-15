@@ -7,7 +7,7 @@
 #'
 #' See update_rules vignette for a mathematical representation.
 #' \deqn{duration_i ~ Exponential(\lambda)}
-#' \deqn{\lambda ~ Gamma(\k, \theta)}
+#' \deqn{\lambda ~ Gamma(k, \theta)}
 #' Session Duration is sampled from a Gamma distribution with a Exponential likelihood
 #' of an individual leaving the site or ending a session at time t.
 #'

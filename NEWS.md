@@ -1,6 +1,9 @@
-# grizbayr 1.3.1
+# grizbayr 1.3.2
 
-# News
+## 1.3.2
+
+- Fix backslash in KaTeX in sample_session_duration.R roxygen2 documentation
+- Added roxygen2 documentation for lazy loaded `sysdata.rda` 
 
 ## 1.3.1
 

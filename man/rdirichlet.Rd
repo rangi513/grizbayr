@@ -9,7 +9,7 @@ rdirichlet(n, alphas_list)
 \arguments{
 \item{n}{integer, the number of samples}
 
-\item{alphas_list}{Named List of Integers: paramaters of the dirichlet,
+\item{alphas_list}{Named List of Integers: parameters of the dirichlet,
 interpreted as the number of success of each outcome}
 }
 \value{

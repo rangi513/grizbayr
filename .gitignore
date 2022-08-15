@@ -46,4 +46,4 @@ doc
 Meta
 
 # CRAN comments
-^cran-comments\.md$
+cran-comments.md

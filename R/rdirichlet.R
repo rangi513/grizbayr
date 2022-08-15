@@ -3,7 +3,7 @@
 #' Randomly samples a vector of length n from a dirichlet distribution parameterized by a vector of alphas
 #' PDF of Gamma with scale = 1 : f(x)= 1/(Gamma(a)) x^(a-1) e^-(x)
 #'
-#' @param alphas_list Named List of Integers: paramaters of the dirichlet,
+#' @param alphas_list Named List of Integers: parameters of the dirichlet,
 #'     interpreted as the number of success of each outcome
 #' @param n integer, the number of samples
 #'
