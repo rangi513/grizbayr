@@ -1,4 +1,4 @@
-.DS_Store 
+.DS_Store
 # History files
 .Rhistory
 .Rapp.history
@@ -44,3 +44,6 @@ docs/
 inst/doc
 doc
 Meta
+
+# CRAN comments
+^cran-comments\.md$
