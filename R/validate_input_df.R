@@ -38,7 +38,7 @@ validate_input_df <- function(input_df, distribution){
 
   required_column_names <- distribution_column_mapping %>%
     dplyr::filter(.data$distribution_type == distribution) %>%
-    dplyr::select(-.data$distribution_type) %>%
+    dplyr::select(-"distribution_type") %>%
     dplyr::select_if(~ sum(.) == 1) %>%
     colnames()
 

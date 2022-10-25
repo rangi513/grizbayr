@@ -98,10 +98,10 @@ sample_total_cm <- function(input_df, priors, n_samples = 5e4){
       )
     ) %>%
     dplyr::select(
-      -.data$rev_per_click_samples,
-      -.data$cost_per_click_samples,
-      -.data$expected_clicks_rates,
-      -.data$expected_clicks_samples
+      -"rev_per_click_samples",
+      -"cost_per_click_samples",
+      -"expected_clicks_rates",
+      -"expected_clicks_samples",
       )
 }
 

@@ -71,15 +71,15 @@ sample_multi_rev_per_session <- function(input_df, priors, n_samples = 5e4){
       )
     ) %>%
     select(
-      .data$option_name,
-      .data$sum_sessions,
-      .data$sum_conversions,
-      .data$sum_conversions_2,
-      .data$sum_revenue,
-      .data$sum_revenue_2,
-      .data$dirichlet_params,
-      .data$gamma_params_A,
-      .data$gamma_params_B,
-      .data$samples
+      "option_name",
+      "sum_sessions",
+      "sum_conversions",
+      "sum_conversions_2",
+      "sum_revenue",
+      "sum_revenue_2",
+      "dirichlet_params",
+      "gamma_params_A",
+      "gamma_params_B",
+      "samples",
     )
 }
