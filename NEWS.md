@@ -1,4 +1,11 @@
-# grizbayr 1.3.2
+# grizbayr 1.3.3
+
+## 1.3.3
+
+- Update maintainer email
+- Update url in DESCRIPTION to referenced paper
+- Fix test in `test-sample_from_posterior.R`
+- Add CRAN badges to README
 
 ## 1.3.2
 

@@ -1,5 +1,10 @@
 # grizbayr
 
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/grizbayr)](https://CRAN.R-project.org/package=grizbayr)
+[![](https://cranlogs.r-pkg.org/badges/grizbayr)](https://cran.r-project.org/package=grizbayr)
+<!-- badges: end -->
+
 ## A Bayesian Inference Package for A|B and Bandit Marketing Tests
 
 ### Description:

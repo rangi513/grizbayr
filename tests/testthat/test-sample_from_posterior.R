@@ -42,7 +42,7 @@ test_that("sample_from_posterior returns correct dataframe shape for all types",
   expect_true(purrr::every(output, ~ is.data.frame(.x)))
   purrr::walk(output, ~ expect_length(.x, n_unique_options))
   purrr::walk(output, ~ expect_equal(nrow(.x), n_unique_options * n_samples))
-  expect_true(purrr::every(output, ~ colnames(.x) == expected_col_names))
+  expect_true(purrr::every(output, ~ all(colnames(.x) == expected_col_names)))
 })
 
 test_that("sample_from_posterior fails when incorrect distribution is input", {
