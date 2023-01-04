@@ -53,6 +53,6 @@ sample_from_posterior <- function(input_df, distribution, priors = list(), n_sam
                                            dplyr::mutate(sample_id = dplyr::row_number())
                                         )
                    ) %>%
-     dplyr::select(.data$option_name, .data$samples) %>%
-     tidyr::unnest(cols = c(.data$samples))
+     dplyr::select("option_name", "samples") %>%
+     tidyr::unnest(cols = "samples")
 }
