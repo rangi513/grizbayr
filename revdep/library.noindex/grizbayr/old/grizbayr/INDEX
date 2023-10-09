@@ -1,0 +1,57 @@
+calculate_multi_rev_per_session
+                        Calculate Multi Rev Per Session
+calculate_total_cm      Calculate Total CM
+distribution_column_mapping
+                        A Mapping from distribution names (inputs) to
+                        columns. This allows the package to dynamically
+                        select column names for different distribution
+                        types.
+estimate_all_values     Estimate All Values
+estimate_lift           Estimate Lift Distribution
+estimate_lift_vs_baseline
+                        Estimate Lift vs Baseline
+estimate_loss           Estimate Loss
+estimate_value_remaining
+                        Estimate Value Remaining
+estimate_win_prob       Estimate Win Probability
+estimate_win_prob_given_posterior
+                        Estimate Win Probability Given Posterior
+                        Distribution
+estimate_win_prob_vs_baseline
+                        Estimate Win Probability vs. Baseline
+estimate_win_prob_vs_baseline_given_posterior
+                        Estimate Win Probability vs. Baseline Given
+                        Posterior
+find_best_option        Find Best Option
+grizbayr                'grizbayr' package
+impute_missing_options
+                        Impute Missing Options
+is_prior_valid          Is Prior Valid
+is_winner_max           Is Winner Max
+rdirichlet              Random Dirichlet
+sample_cm_per_click     Sample CM Per Click
+sample_conv_rate        Sample Conversion Rate
+sample_cpa              Sample Cost Per Activation (CPA)
+sample_cpc              Sample Cost Per Click
+sample_ctr              Sample Click Through Rate
+sample_from_posterior   Sample From Posterior
+sample_multi_rev_per_session
+                        Sample Multiple Revenue Per Session
+sample_page_views_per_session
+                        Sample Page Views Per Session (Visit)
+sample_response_rate    Sample Response Rate
+sample_rev_per_session
+                        Sample Rev Per Session
+sample_session_duration
+                        Sample Session Duration
+sample_total_cm         Sample Total CM (Given Impression Count)
+update_beta             Update Beta
+update_dirichlet        Update Dirichlet Distribution
+update_gamma            Update Gamma
+validate_data_values    Validate Data Values
+validate_input_column   Validate Input Column
+validate_input_df       Validate Input DataFrame
+validate_posterior_samples
+                        Validate Posterior Samples Dataframe
+validate_priors         Validate Priors
+validate_wrt_option     Validate With Respect To Option
