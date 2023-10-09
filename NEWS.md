@@ -1,4 +1,8 @@
-# grizbayr 1.3.3
+# grizbayr 1.3.5
+
+## 1.3.5
+
+- Update package documentation due to roxygen2 breaking change
 
 ## 1.3.3
 

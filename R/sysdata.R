@@ -6,5 +6,5 @@
 #' @usage distribution_column_mapping
 #' @format A data frame with 11 rows and 12 columns
 #'
-"distribution_column_mapping"
+#' "distribution_column_mapping"
 
